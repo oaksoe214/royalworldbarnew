@@ -494,7 +494,7 @@ function webviewTest(sender_psid){
 
 
 const hiReply =(sender_psid) => {
-  let response = {"text": "You sent hi message"};
+  let response = {"text": "Hello user, you can make room booking"};
   callSend(sender_psid, response);
 }
 
