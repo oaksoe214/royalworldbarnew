@@ -336,21 +336,21 @@ const handleMessage = (sender_psid, received_message) => {
       case "mingalarbar":
           greetInMyanmar(sender_psid);
         break;
-      case "Appointment":
-          Appointment(sender_psid);
+      case "appointment":
+          appointment(sender_psid);
         break;
       case "room":
-          roomType(sender_psid);
+          room(sender_psid);
         break;
-      case "Normal Room":
-          shownormalroom(sender_psid);
-        break;
-      case "Medium Room":
-          showmediumroom(sender_psid);
-        break;
-      case "Family Room":
-          showfamilyroom(sender_psid);
-        break;
+      // case "normal Room":
+      //     shownormalroom(sender_psid);
+      //   break;
+      // case "Medium Room":
+      //     showmediumroom(sender_psid);
+      //   break;
+      // case "Family Room":
+      //     showfamilyroom(sender_psid);
+      //   break;
       case "text":
         textReply(sender_psid);
         break;
@@ -509,7 +509,7 @@ function webviewTest(sender_psid){
 /****************
 start room 
 ****************/
-const Appointment =(sender_psid) => {
+const appointment =(sender_psid) => {
   let response1 = {"text": "Welcome to Royal World Bar"};
   let response2 = {
     "text": "Please Select Room or Food",
@@ -557,7 +557,7 @@ const Appointment =(sender_psid) => {
 
 // }
 
-const roomType =(sender_psid) => {
+const room =(sender_psid) => {
   let response = {
       "attachment": {
         "type": "template",
