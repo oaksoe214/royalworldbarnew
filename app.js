@@ -32,11 +32,11 @@ const bot_questions ={
 "q6": "Please leave a message"
 }
 
-let current_question='';
+let current_question = '';
 
-let user_id='';
+let user_id = '';
 
-let userInputs[];
+let userInputs = [];
 
 /*
 var storage = multer.diskStorage({
