@@ -98,7 +98,7 @@ app.post('/webhook', (req, res) => {
       let webhook_event = entry.messaging[0];
       let sender_psid = webhook_event.sender.id; 
 
-      user_id=sender_psid;
+      user_id = sender_psid;
 
       userInputs[user_id]={};
      
@@ -325,7 +325,7 @@ function handleQuickReply(sender_psid, received_message) {
   if(received_message.startsWith("visit:")){
     let visit=received_message.slice(6);
     console.log("VISIT: ", visit);
-    userInputs[user_id].visit=visit;
+    userInputs[user_id].visit='visit';
     current_question='q1';
     botQuestions(current_question, sender_psid);
   }
@@ -334,7 +334,7 @@ function handleQuickReply(sender_psid, received_message) {
         case "room":
           console.log(USERID,user_id);
           console.log(USERINPUTS,userInputs);
-          userInputs[user_id].appointment=room;
+          userInputs[user_id].appointment='room';
           showRoom(sender_psid);
         break;
 
@@ -495,7 +495,7 @@ const handlePostback = (sender_psid, received_postback) => {
   if(payload.startsWith("Room:")){
     let room_type=payload.slice(5);
     console.log("SELECTED ROOM IS: ", room_type);
-    userInputs[user_id].room=room_type;
+    userInputs[user_id].Room=room_type;
 
     firstOrFollowup(sender_psid);
   }
