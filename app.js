@@ -38,17 +38,6 @@ let user_id='';
 
 let userInputs[];
 
-userInputs[user_id]={
-  'appointment':'',
-  'room':'',
-  'visit':'',
-  'date':'',
-  'time':'',
-  'name':'',
-  'phone':'',
-  'email':'',
-  'message':''
-}
 /*
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -110,6 +99,9 @@ app.post('/webhook', (req, res) => {
       let sender_psid = webhook_event.sender.id; 
 
       user_id=sender_psid;
+
+      userInputs[user_id]={};
+     
 
       if (webhook_event.message) {
         if(webhook_event.message.quick_reply){
@@ -340,6 +332,8 @@ function handleQuickReply(sender_psid, received_message) {
   else{
     switch(received_message) {     
         case "room":
+          console.log(USERID,user_id);
+          console.log(USERINPUTS,userInputs);
           userInputs[user_id].appointment=room;
           showRoom(sender_psid);
         break;
