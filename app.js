@@ -83,8 +83,6 @@ app.post('/webhook', (req, res) => {
       let webhook_event = entry.messaging[0];
       let sender_psid = webhook_event.sender.id; 
 
-      console.log("Event : ",webhook_event);
-
       if (webhook_event.message) {
         if(webhook_event.message.quick_reply){
             handleQuickReply(sender_psid, webhook_event.message.quick_reply.payload);
@@ -300,7 +298,13 @@ Function to Handle when user send quick reply message
 
 function handleQuickReply(sender_psid, received_message) {
   
-  switch(received_message) {        
+  console.log('QUICK REPLY', received_message);
+
+  switch(received_message) {     
+        case "room":
+          showRoom(sender_psid);
+        break;
+
         case "on":
             showQuickReplyOn(sender_psid);
           break;
@@ -318,6 +322,8 @@ Function to Handle when user send text message
 ***********************************************/
 
 const handleMessage = (sender_psid, received_message) => {
+
+  console.log('TEXT REPLY', received_message);
   //let message;
   let response;
 
@@ -341,9 +347,7 @@ const handleMessage = (sender_psid, received_message) => {
       case "appointment":
           appointment(sender_psid);
         break;
-      case "room":
-          room(sender_psid);
-        break;
+      
       // case "normal Room":
       //     shownormalroom(sender_psid);
       //   break;
@@ -382,6 +386,7 @@ const handleMessage = (sender_psid, received_message) => {
 Function to handle when user send attachment
 **********************************************/
 const handleAttachments = (sender_psid, attachments) => {
+  console.log('ATTACHMENT REPLY', attachments);
   let response; 
   let attachment_url = attachments[0].payload.url;
     response = {
@@ -417,6 +422,7 @@ const handleAttachments = (sender_psid, attachments) => {
 Function to handle when user click button
 **********************************************/
 const handlePostback = (sender_psid, received_postback) => {
+  console.log('BUTTON POSTBACK REPLY', received_postback);
   let payload = received_postback.payload;
   switch(payload) {        
       case "yes":
@@ -559,7 +565,7 @@ const appointment =(sender_psid) => {
 
 // }
 
-const room =(sender_psid) => {
+const showRoom =(sender_psid) => {
   let response = {
       "attachment": {
         "type": "template",
