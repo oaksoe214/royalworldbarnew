@@ -34,6 +34,21 @@ const bot_questions ={
 
 let current_question='';
 
+let user_id='';
+
+let userInputs[];
+
+userInputs[user_id]={
+  'appointment':'',
+  'room':'',
+  'visit':'',
+  'date':'',
+  'time':'',
+  'name':'',
+  'phone':'',
+  'email':'',
+  'message':''
+}
 /*
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -93,6 +108,8 @@ app.post('/webhook', (req, res) => {
 
       let webhook_event = entry.messaging[0];
       let sender_psid = webhook_event.sender.id; 
+
+      user_id=sender_psid;
 
       if (webhook_event.message) {
         if(webhook_event.message.quick_reply){
@@ -316,12 +333,14 @@ function handleQuickReply(sender_psid, received_message) {
   if(received_message.startsWith("visit:")){
     let visit=received_message.slice(6);
     console.log("VISIT: ", visit);
+    userInputs[user_id].visit=visit;
     current_question='q1';
     botQuestions(current_question, sender_psid);
   }
   else{
     switch(received_message) {     
         case "room":
+          userInputs[user_id].appointment=room;
           showRoom(sender_psid);
         break;
 
@@ -353,10 +372,37 @@ const handleMessage = (sender_psid, received_message) => {
      handleAttachments(sender_psid, received_message.attachments);
   }else if(current_question == 'q1'){
     console.log('DATE ENTERED',received_message.text);
+    userInputs[user_id].date=received_message.text;
     current_question='q2';
     botQuestions(current_question,sender_psid);
+  }else if(current_question == 'q2'){
+    console.log('TIME ENTERED',received_message.text);
+    userInputs[user_id].time=received_message.text;
+    current_question='q3';
+    botQuestions(current_question,sender_psid);
+  }else if(current_question == 'q3'){
+    console.log('FULL NAME ENTERED',received_message.text);
+    userInputs[user_id].name=received_message.text;
+    current_question='q4';
+    botQuestions(current_question,sender_psid);
+  }else if(current_question == 'q4'){
+    console.log('PHONE ENTERED',received_message.text);
+    userInputs[user_id].phone=received_message.text;
+    current_question='q5';
+    botQuestions(current_question,sender_psid);
+  }else if(current_question == 'q5'){
+    console.log('EMAIL ENTERED',received_message.text);
+    userInputs[user_id].email=received_message.text;
+    current_question='q6';
+    botQuestions(current_question,sender_psid);
+  }else if(current_question == 'q6'){
+    console.log('MESSAGE ENTERED',received_message.text);
+    userInputs[user_id].message=received_message.text;
+    current_question='';
 
+    confirmAppointment(sender_psid);
   }
+
   else {
       
       let user_message = received_message.text;
@@ -455,6 +501,8 @@ const handlePostback = (sender_psid, received_postback) => {
   if(payload.startsWith("Room:")){
     let room_type=payload.slice(5);
     console.log("SELECTED ROOM IS: ", room_type);
+    userInputs[user_id].room=room_type;
+
     firstOrFollowup(sender_psid);
   }
   else{
@@ -646,9 +694,26 @@ const botQuestions = (current_question,sender_psid) =>{
   }else if(current_question='q2'){
     let response = {"text": bot_questions.q2};
   callSend(sender_psid, response);
+  }else if(current_question='q3'){
+    let response = {"text": bot_questions.q3};
+  callSend(sender_psid, response);
+  }else if(current_question='q4'){
+    let response = {"text": bot_questions.q4};
+  callSend(sender_psid, response);
+  }else if(current_question='q5'){
+    let response = {"text": bot_questions.q5};
+  callSend(sender_psid, response);
+  }else if(current_question='q6'){
+    let response = {"text": bot_questions.q6};
+  callSend(sender_psid, response);
   }
 
+}
 
+const confirmAppointment = (sender_psid) => {
+  console.log('BOOKING INFO',userInputs[user_id])
+   let response = {"text": "Summary"};
+  callSend(sender_psid, response);
 }
 /****************
 end room 
