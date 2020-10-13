@@ -437,6 +437,7 @@ const handlePostback = (sender_psid, received_postback) => {
   if(payload.startsWith("Room:")){
     let room_type=payload.slice(5);
     console.log("SELECTED ROOM IS: ", room_type);
+    firstOrFollowup(sender_psid);
   }
   else{
       switch(payload) {        
