@@ -24,7 +24,7 @@ app.use(body_parser.json());
 app.use(body_parser.urlencoded());
 
 const bot_questions ={
-"q1": "Please enter date (dd-mm-yyyy)",
+"q1": "Please enter date (yyyy-mm-dd)",
 "q2": "Please enter time (hh:mm am or pm)",
 "q3": "Please enter full name",
 "q4": "Please enter phone",
@@ -353,6 +353,9 @@ const handleMessage = (sender_psid, received_message) => {
      handleAttachments(sender_psid, received_message.attachments);
   }else if(current_question == 'q1'){
     console.log('DATE ENTERED',received_message.text);
+    current_question='q2';
+    botQuestions(current_question,sender_psid);
+
   }
   else {
       
@@ -640,7 +643,11 @@ const botQuestions = (current_question,sender_psid) =>{
   if(current_question='q1'){
     let response = {"text": bot_questions.q1};
   callSend(sender_psid, response);
+  }else if(current_question='q2'){
+    let response = {"text": bot_questions.q2};
+  callSend(sender_psid, response);
   }
+
 
 }
 /****************
