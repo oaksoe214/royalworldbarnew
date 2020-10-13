@@ -300,6 +300,8 @@ function handleQuickReply(sender_psid, received_message) {
   
   console.log('QUICK REPLY', received_message);
 
+  received_message=received_message.toLowerCase();
+
   switch(received_message) {     
         case "room":
           showRoom(sender_psid);
@@ -333,8 +335,6 @@ const handleMessage = (sender_psid, received_message) => {
       
       let user_message = received_message.text;
 
-      console.log('USER MESSAGE', user_message);
-     
       user_message = user_message.toLowerCase(); 
 
       switch(user_message) { 
@@ -422,7 +422,7 @@ const handleAttachments = (sender_psid, attachments) => {
 Function to handle when user click button
 **********************************************/
 const handlePostback = (sender_psid, received_postback) => {
-  console.log('BUTTON POSTBACK REPLY', received_postback);
+  console.log('BUTTON', received_postback);
   let payload = received_postback.payload;
   switch(payload) {        
       case "yes":
@@ -481,10 +481,6 @@ const showImages = (sender_psid) => {
 /*********************************************
 END GALLERY SAMPLE
 **********************************************/
-
-
-
-
 
 
 function webviewTest(sender_psid){
