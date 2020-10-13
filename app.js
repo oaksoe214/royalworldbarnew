@@ -569,8 +569,8 @@ const showRoom =(sender_psid) => {
           "template_type": "generic",
           "elements": [{
             "title": "Normal Room",
-            "subtitle": "Cool and Silent",
-            "image_url":"https://imaginahome.com/wp-content/uploads/2017/06/wet-bar-design-ideas-1920x1280.jpg",                       
+            "subtitle": "Suitable (2-4 people)",
+            "image_url":"https://i1.sndcdn.com/avatars-JtzQf3QtJMEKuyWY-lr0XdA-t500x500.jpg",                       
             "buttons": [
                 {
                   "type": "postback",
@@ -578,7 +578,33 @@ const showRoom =(sender_psid) => {
                   "payload": "Normal Room",
                 }
               ],
-          }]
+          },
+          {
+            "title": "Medium Room",
+            "subtitle": "Suitable (3-6 people)",
+            "image_url":"https://imaginahome.com/wp-content/uploads/2017/06/wet-bar-design-ideas-1920x1280.jpg",                       
+            "buttons": [
+                {
+                  "type": "postback",
+                  "title": "Medium Room",
+                  "payload": "Medium Room",
+                }
+              ],
+          },
+          {
+            "title": "Family Room",
+            "subtitle": "Suitable (4-10 people)",
+            "image_url":"https://i02.appmifile.com/564_bbs_en/30/04/2020/bad9864ed3.png",                       
+            "buttons": [
+                {
+                  "type": "postback",
+                  "title": "Family Room",
+                  "payload": "Family Room",
+                }
+              ],
+          }
+
+          ]
         }
       }
     }
