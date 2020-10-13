@@ -99,8 +99,11 @@ app.post('/webhook', (req, res) => {
       let sender_psid = webhook_event.sender.id; 
 
       user_id = sender_psid;
-
-      userInputs[user_id]={};
+      
+      if(!userInputs[user_id]){
+        userInputs[user_id]={}; 
+      }
+      
      
 
       if (webhook_event.message) {
@@ -324,8 +327,9 @@ function handleQuickReply(sender_psid, received_message) {
 
   if(received_message.startsWith("visit:")){
     let visit=received_message.slice(6);
-    console.log("VISIT: ", visit);
+    console.log('VISIT: ', visit);
     userInputs[user_id].visit=visit;
+    console.log('TEST2',userInputs);
     current_question='q1';
     botQuestions(current_question, sender_psid);
   }
@@ -496,7 +500,7 @@ const handlePostback = (sender_psid, received_postback) => {
     let room_type=payload.slice(5);
     console.log("SELECTED ROOM IS: ", room_type);
     userInputs[user_id].room=room_type;
-
+    console.log('TEST',userInputs);
     firstOrFollowup(sender_psid);
   }
   else{
@@ -705,9 +709,37 @@ const botQuestions = (current_question,sender_psid) => {
 }
 
 const confirmAppointment = (sender_psid) => {
-  console.log('BOOKING INFO',userInputs[user_id])
-   let response = {"text": "Summary"};
-  callSend(sender_psid, response);
+  console.log('BOOKING INFO',userInputs);
+   let Summary = "appointment:" + userInputs[user_id].appointment + "\u000A";
+   Summary += "room:" + userInputs[user_id].room + "\u000A";
+   Summary += "visit:" + userInputs[user_id].visit + "\u000A";
+   Summary += "date:" + userInputs[user_id].date + "\u000A";
+   Summary += "time:" + userInputs[user_id].time + "\u000A";
+   Summary += "name:" + userInputs[user_id].name + "\u000A";
+   Summary += "phone:" + userInputs[user_id].phone + "\u000A";
+   Summary += "email:" + userInputs[user_id].email + "\u000A";
+   Summary += "message:" + userInputs[user_id].message + "\u000A";
+   let response1 = {"text": "Summary \u000Aanother lne"};
+  
+  let response2 = {
+    "text": "Select your reply",
+    "quick_replies":[
+            {
+              "content_type":"text",
+              "title":"Confirm",
+              "payload":"on",              
+            },{
+              "content_type":"text",
+              "title":"Cancel",
+              "payload":"off",             
+            }
+    ]
+  };
+  callSend(sender_psid, response1).then(() => {
+    return callSend(sender_psid, response2);
+  });
+
+
 }
 /****************
 end room 
