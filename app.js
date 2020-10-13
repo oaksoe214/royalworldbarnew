@@ -336,6 +336,9 @@ const handleMessage = (sender_psid, received_message) => {
       case "mingalarbar":
           greetInMyanmar(sender_psid);
         break;
+      case "room":
+          roomAppointment(sender_psid);
+        break;
       case "text":
         textReply(sender_psid);
         break;
@@ -491,6 +494,37 @@ function webviewTest(sender_psid){
 }
 
 
+/****************
+start room 
+****************/
+const roomAppointment =(sender_psid) => {
+  let response1 = {"text": "Welcome to Royal World Bar"};
+  let response2 = {
+    "text": "Please Select Room",
+    "quick_replies":[
+            {
+              "content_type":"text",
+              "title":"Personal Room",
+              "payload":"Personal Room",              
+            },{
+              "content_type":"text",
+              "title":"Medium Room",
+              "payload":"Medium Room",             
+            },{
+              "content_type":"text",
+              "title":"Family Room",
+              "payload":"Family Room",             
+            }
+    ]
+  };
+  callSend(sender_psid, response1).then(()=>{
+    return callSend(sender_psid, response2);
+  });
+
+}
+/****************
+end room 
+****************/
 
 
 const hiReply =(sender_psid) => {
