@@ -719,8 +719,10 @@ const confirmAppointment = (sender_psid) => {
    Summary += "phone:" + userInputs[user_id].phone + "\u000A";
    Summary += "email:" + userInputs[user_id].email + "\u000A";
    Summary += "message:" + userInputs[user_id].message + "\u000A";
-   let response1 = {"text": "Summary \u000Aanother lne"};
-  
+   
+  let response1 = {"text": Summary};
+
+
   let response2 = {
     "text": "Select your reply",
     "quick_replies":[
@@ -739,8 +741,8 @@ const confirmAppointment = (sender_psid) => {
     return callSend(sender_psid, response2);
   });
 
-
-}
+  }
+  
 /****************
 end room 
 ****************/
