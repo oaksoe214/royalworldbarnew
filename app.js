@@ -681,23 +681,23 @@ const firstOrFollowup =(sender_psid) => {
   callSend(sender_psid, response);
 }
 
-const botQuestions = (current_question,sender_psid) =>{
-  if(current_question='q1'){
+const botQuestions = (current_question,sender_psid) => {
+  if(current_question =='q1'){
     let response = {"text": bot_questions.q1};
   callSend(sender_psid, response);
-  }else if(current_question='q2'){
+  }else if(current_question =='q2'){
     let response = {"text": bot_questions.q2};
   callSend(sender_psid, response);
-  }else if(current_question='q3'){
+  }else if(current_question =='q3'){
     let response = {"text": bot_questions.q3};
   callSend(sender_psid, response);
-  }else if(current_question='q4'){
+  }else if(current_question =='q4'){
     let response = {"text": bot_questions.q4};
   callSend(sender_psid, response);
-  }else if(current_question='q5'){
+  }else if(current_question =='q5'){
     let response = {"text": bot_questions.q5};
   callSend(sender_psid, response);
-  }else if(current_question='q6'){
+  }else if(current_question =='q6'){
     let response = {"text": bot_questions.q6};
   callSend(sender_psid, response);
   }
