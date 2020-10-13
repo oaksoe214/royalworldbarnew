@@ -305,7 +305,6 @@ function handleQuickReply(sender_psid, received_message) {
   if(received_message.startsWith("visit:")){
     let visit=received_message.slice(6);
     console.log("VISIT: ", visit);
-    //firstOrFollowup(sender_psid);
   }
   else{
     switch(received_message) {     
@@ -552,32 +551,6 @@ const appointment =(sender_psid) => {
 
 }
 
-// const roomType =(sender_psid) => {
-//   let response1 = {"text": "Welcome to Royal World Bar"};
-//   let response2 = {
-//     "text": "Please Select Room",
-//     "quick_replies":[
-//             {
-//               "content_type":"text",
-//               "title":"Personal Room",
-//               "payload":"Personal Room",              
-//             },{
-//               "content_type":"text",
-//               "title":"Medium Room",
-//               "payload":"Medium Room",             
-//             },{
-//               "content_type":"text",
-//               "title":"Family Room",
-//               "payload":"Family Room",             
-//             }
-//     ]
-//   };
-//   callSend(sender_psid, response1).then(()=>{
-//     return callSend(sender_psid, response2);
-//   });
-
-// }
-
 const showRoom =(sender_psid) => {
   let response = {
       "attachment": {
@@ -629,7 +602,7 @@ const showRoom =(sender_psid) => {
 
 }
 
-const firstOrFollowup = () => {
+const firstOrFollowup =(sender_psid) => {  
   let response = {
     "text": "First Time Visit or Follow Up?",
     "quick_replies":[
