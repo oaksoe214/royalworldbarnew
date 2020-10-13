@@ -301,10 +301,11 @@ function handleQuickReply(sender_psid, received_message) {
   console.log('QUICK REPLY', received_message);
 
   received_message=received_message.toLowerCase();
+
   if(received_message.startsWith("visit:")){
     let visit=received_message.slice(6);
     console.log("VISIT: ", visit);
-    firstOrFollowup(sender_psid);
+    //firstOrFollowup(sender_psid);
   }
   else{
     switch(received_message) {     
