@@ -336,8 +336,8 @@ const handleMessage = (sender_psid, received_message) => {
       case "mingalarbar":
           greetInMyanmar(sender_psid);
         break;
-      case "room_food":
-          room_foodAppointment(sender_psid);
+      case "Appointment":
+          Appointment(sender_psid);
         break;
       case "room":
           roomType(sender_psid);
@@ -509,7 +509,7 @@ function webviewTest(sender_psid){
 /****************
 start room 
 ****************/
-const room_foodAppointment =(sender_psid) => {
+const Appointment =(sender_psid) => {
   let response1 = {"text": "Welcome to Royal World Bar"};
   let response2 = {
     "text": "Please Select Room or Food",
