@@ -84,7 +84,7 @@ app.post('/webhook', (req, res) => {
       let sender_psid = webhook_event.sender.id; 
 
       console.log("Event : ",webhook_event);
-      
+
       if (webhook_event.message) {
         if(webhook_event.message.quick_reply){
             handleQuickReply(sender_psid, webhook_event.message.quick_reply.payload);
@@ -360,7 +360,7 @@ const handleMessage = (sender_psid, received_message) => {
         quickReply(sender_psid);
         break;
       case "button":
-        console.log('CASE: BUTTON');            
+        // console.log('CASE: BUTTON');            
         buttonReply(sender_psid);
         break;
       case "webview":
@@ -580,7 +580,7 @@ const room =(sender_psid) => {
         }
       }
     }
-
+  callSend(sender_psid, response);
 
 }
 
