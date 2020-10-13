@@ -336,8 +336,20 @@ const handleMessage = (sender_psid, received_message) => {
       case "mingalarbar":
           greetInMyanmar(sender_psid);
         break;
+      case "room_food":
+          room_foodAppointment(sender_psid);
+        break;
       case "room":
-          roomAppointment(sender_psid);
+          roomType(sender_psid);
+        break;
+      case "Normal Room":
+          shownormalroom(sender_psid);
+        break;
+      case "Medium Room":
+          showmediumroom(sender_psid);
+        break;
+      case "Family Room":
+          showfamilyroom(sender_psid);
         break;
       case "text":
         textReply(sender_psid);
@@ -497,23 +509,19 @@ function webviewTest(sender_psid){
 /****************
 start room 
 ****************/
-const roomAppointment =(sender_psid) => {
+const room_foodAppointment =(sender_psid) => {
   let response1 = {"text": "Welcome to Royal World Bar"};
   let response2 = {
-    "text": "Please Select Room",
+    "text": "Please Select Room or Food",
     "quick_replies":[
             {
               "content_type":"text",
-              "title":"Personal Room",
-              "payload":"Personal Room",              
+              "title":"Room",
+              "payload":"Room",              
             },{
               "content_type":"text",
-              "title":"Medium Room",
-              "payload":"Medium Room",             
-            },{
-              "content_type":"text",
-              "title":"Family Room",
-              "payload":"Family Room",             
+              "title":"Food",
+              "payload":"Food",             
             }
     ]
   };
@@ -522,6 +530,58 @@ const roomAppointment =(sender_psid) => {
   });
 
 }
+
+// const roomType =(sender_psid) => {
+//   let response1 = {"text": "Welcome to Royal World Bar"};
+//   let response2 = {
+//     "text": "Please Select Room",
+//     "quick_replies":[
+//             {
+//               "content_type":"text",
+//               "title":"Personal Room",
+//               "payload":"Personal Room",              
+//             },{
+//               "content_type":"text",
+//               "title":"Medium Room",
+//               "payload":"Medium Room",             
+//             },{
+//               "content_type":"text",
+//               "title":"Family Room",
+//               "payload":"Family Room",             
+//             }
+//     ]
+//   };
+//   callSend(sender_psid, response1).then(()=>{
+//     return callSend(sender_psid, response2);
+//   });
+
+// }
+
+const roomType =(sender_psid) => {
+  let response = {
+      "attachment": {
+        "type": "template",
+        "payload": {
+          "template_type": "generic",
+          "elements": [{
+            "title": "Normal Room",
+            "subtitle": "Cool and Silent",
+            "image_url":"https://imaginahome.com/wp-content/uploads/2017/06/wet-bar-design-ideas-1920x1280.jpg",                       
+            "buttons": [
+                {
+                  "type": "postback",
+                  "title": "Normal Room",
+                  "payload": "Normal Room",
+                }
+              ],
+          }]
+        }
+      }
+    }
+
+
+}
+
 /****************
 end room 
 ****************/
