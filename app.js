@@ -301,8 +301,13 @@ function handleQuickReply(sender_psid, received_message) {
   console.log('QUICK REPLY', received_message);
 
   received_message=received_message.toLowerCase();
-
-  switch(received_message) {     
+  if(received_message.startsWith("visit:")){
+    let visit=received_message.slice(6);
+    console.log("VISIT: ", visit);
+    firstOrFollowup(sender_psid);
+  }
+  else{
+    switch(received_message) {     
         case "room":
           showRoom(sender_psid);
         break;
@@ -316,6 +321,8 @@ function handleQuickReply(sender_psid, received_message) {
         default:
             defaultReply(sender_psid);
   } 
+}
+  
  
 }
 
@@ -422,9 +429,16 @@ const handleAttachments = (sender_psid, attachments) => {
 Function to handle when user click button
 **********************************************/
 const handlePostback = (sender_psid, received_postback) => {
-  console.log('BUTTON', received_postback);
+  
   let payload = received_postback.payload;
-  switch(payload) {        
+  console.log('BUTTON PAYLOAD', payload);
+  
+  if(payload.startsWith("Room:")){
+    let room_type=payload.slice(5);
+    console.log("SELECTED ROOM IS: ", room_type);
+  }
+  else{
+      switch(payload) {        
       case "yes":
           showButtonReplyYes(sender_psid);
         break;
@@ -433,7 +447,8 @@ const handlePostback = (sender_psid, received_postback) => {
         break;                      
       default:
           defaultReply(sender_psid);
-  } 
+    }     
+  }
 }
 
 
@@ -575,7 +590,7 @@ const showRoom =(sender_psid) => {
                 {
                   "type": "postback",
                   "title": "Normal Room",
-                  "payload": "Normal Room",
+                  "payload": "Room:Normal Room",
                 }
               ],
           },
@@ -587,7 +602,7 @@ const showRoom =(sender_psid) => {
                 {
                   "type": "postback",
                   "title": "Medium Room",
-                  "payload": "Medium Room",
+                  "payload": "Room:Medium Room",
                 }
               ],
           },
@@ -599,7 +614,7 @@ const showRoom =(sender_psid) => {
                 {
                   "type": "postback",
                   "title": "Family Room",
-                  "payload": "Family Room",
+                  "payload": "Room:Family Room",
                 }
               ],
           }
@@ -612,6 +627,23 @@ const showRoom =(sender_psid) => {
 
 }
 
+const firstOrFollowup = () => {
+  let response = {
+    "text": "First Time Visit or Follow Up?",
+    "quick_replies":[
+            {
+              "content_type":"text",
+              "title":"First Time",
+              "payload":"visit:first time",              
+            },{
+              "content_type":"text",
+              "title":"Follow Up",
+              "payload":"visit:follow up",             
+            }
+    ]
+  };
+  callSend(sender_psid, response);
+}
 /****************
 end room 
 ****************/
