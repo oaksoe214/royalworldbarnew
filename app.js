@@ -145,6 +145,10 @@ app.post('/test',function(req,res){
     callSend(sender_psid, response);
 });
 
+app.get('/admin/roombookings', function(req,res){
+  res.send('Here we will show all Room Bookings')
+});
+
 /*********************************************
 Gallery page
 **********************************************/
@@ -730,21 +734,6 @@ const confirmAppointment = (sender_psid) => {
 
   }
   
-// const saveRoomBooking = async (arg, sender_psid) =>{
-//   let data=arg;
-//   data.ref= generateRandom(6);
-//   const res = await db.collection('roombookings').add(data).then(()=>{
-//       console.log("SAVED", success);
-//       let text = "Thank you. We have received your appointment."+ "\u000A";
-//       text += "We will call you very soon to confirm"+ "\u000A";
-//       text +="Your Booking reference number is:" + data.ref;
-//       let response = {"text": text};
-//       callSend(sender_psid, response);
-//     }).catch((err)=>{
-//         console.log('Error', err);
-//     });
-//   }
-
 const saveRoomBooking = async (arg, sender_psid) =>{
   let data=arg;
   data.ref= generateRandom(6);
