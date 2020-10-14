@@ -165,7 +165,8 @@ app.get('/admin/roombookings', async function(req,res){
   });
 
   console.log(data);
-  res.render('roombookings.ejs');
+
+  res.render('roombookings.ejs' {data:data});
 });
 
 /*********************************************
