@@ -146,8 +146,8 @@ app.post('/test',function(req,res){
 });
 
 app.get('/admin/roombookings', async function(req,res){
-  const roombookingRef = db.collection('roombookings');
-  const snapshot = await roombookingRef.get();
+  const roombookingsRef = db.collection('roombookings');
+  const snapshot = await roombookingsRef.get();
   if(snapshot.empty){
     console.log('No matching documents.');
     return;
@@ -155,19 +155,17 @@ app.get('/admin/roombookings', async function(req,res){
 
   let data = [];
 
-  // data = [{},{},{}]
-
   snapshot.forEach(doc => {
     let roombooking ={};
     roombooking = doc.data();
-    roombooking.doc.id = doc.id;
+    roombooking.doc_id = doc.id;
 
     data.push(roombooking);
     
   });
 
   console.log(data);
-  res.send('done');
+  res.status(200).json({data:data});
 });
 
 /*********************************************
