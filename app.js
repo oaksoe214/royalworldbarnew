@@ -172,13 +172,13 @@ app.get('/admin/updateroombooking/:doc_id', async function(req,res){
   let doc_id = req.params.doc_id;
     
   const roombookingRef = db.collection('roombookings').doc(doc_id);
-  const snapshot = await roombookingRef.get();
+  const doc = await roombookingRef.get();
   if (!doc.exists){
     console.log('No such document!');s
   }else{
     console.log('Document data:', doc.data());
     let data = doc.data();
-    res.render('editroombookings.ejs', {data:data});
+    res.render('editroombookings.ejs',{data:data});
   }
 
   
