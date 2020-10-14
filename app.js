@@ -170,7 +170,17 @@ app.get('/admin/roombookings', async function(req,res){
 
 app.get('/admin/updateroombooking/:doc_id', function(req,res){
   let doc_id = req.params.doc_id;
-  res.send(doc_id);
+    
+  const roombookingsRef = db.collection('roombookings').doc(doc_id);
+  const snapshot = await roombookingsRef.get();
+  if (!doc.exists){
+    console.log('No such document!');s
+  }else{
+    console.log('Document data:', doc.data());
+    res.render('confirmroombookings.ejs');
+  }
+
+  
 });
 
 /*********************************************
