@@ -738,7 +738,7 @@ const saveRoomBooking = async (arg, sender_psid) =>{
       let text = "Thank you. We have received your appointment."+ "\u000A";
       text += "We will call you very soon to confirm"+ "\u000A";
       text +="Your Booking reference number is:" + data.ref;
-      let response = {"text": "Complete Booking! Thank you for you booking and we will call you very soon to confirm. "};
+      let response = {"text": text};
       callSend(sender_psid, response);
     }).catch((err)=>{
         console.log('Error', err);
