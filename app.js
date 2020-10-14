@@ -735,7 +735,7 @@ const confirmAppointment = (sender_psid) => {
 const saveRoomBooking = async (arg) =>{
   let data=arg;
   data.ref= generateRandom(6);
-  const res = await db.collection('roombooking').add(data);
+  const res = await db.collection('roombookings').add(data);
   res.then(()=>{
     let text = "Thank you. We have received your appointment."+ "\u000A";
     text += "We will call you very soon to confirm"+ "\u000A";
