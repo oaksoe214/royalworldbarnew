@@ -331,7 +331,7 @@ function handleQuickReply(sender_psid, received_message) {
     current_question='q1';
     botQuestions(current_question, sender_psid);
   }else if(received_message.startsWith("roomfood:")){
-    let r_f=received_message.slice(5);
+    let r_f=received_message.slice(9);
     userInputs[user_id].appointment=r_f;
     showRoom(sender_psid);
 
