@@ -146,7 +146,7 @@ app.post('/test',function(req,res){
 });
 
 app.get('/admin/roombookings', function(req,res){
-  res.jason({'text': 'here we will show all room bookings'})
+  res.jason({'text': 'here we will show all room bookings'});
 });
 
 /*********************************************
