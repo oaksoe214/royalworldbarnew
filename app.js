@@ -159,7 +159,7 @@ app.get('/admin/roombookings', async function(req,res){
 
   snapshot.forEach(doc => {
     let roombooking ={};
-    roombooking = doc;
+    roombooking = doc.data();
     roombooking.doc.id = doc.id;
 
     data.push(roombooking);
