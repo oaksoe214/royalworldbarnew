@@ -155,8 +155,14 @@ app.get('/admin/roombookings', async function(req,res){
 
   let data = [];
 
+  // data = [{},{},{}]
+
   snapshot.forEach(doc => {
-    data.push(doc.data())
+    let roombooking ={};
+    roombooking = doc;
+    roombooking.doc.id = doc.id;
+
+    data.push(roombooking);
     
   });
 
