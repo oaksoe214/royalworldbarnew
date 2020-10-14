@@ -180,8 +180,21 @@ app.get('/admin/updateroombooking/:doc_id', async function(req,res){
     let data = doc.data();
     res.render('editroombookings.ejs',{data:data});
   }
+});
 
-  
+app.post('/admin/updateroombooking/', async function(req,res){
+  console.log('REQ:', req.params);
+    
+  res.send('ok');
+  // const roombookingRef = db.collection('roombookings').doc(doc_id);
+  // const doc = await roombookingRef.get();
+  // if (!doc.exists){
+  //   console.log('No such document!');s
+  // }else{
+  //   console.log('Document data:', doc.data());
+  //   let data = doc.data();
+  //   res.render('editroombookings.ejs',{data:data});
+  // }
 });
 
 /*********************************************
