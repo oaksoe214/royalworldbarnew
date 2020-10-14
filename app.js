@@ -149,8 +149,7 @@ app.get('/admin/roombookings', async function(req,res){
   const roombookingsRef = db.collection('roombookings');
   const snapshot = await roombookingsRef.get();
   if(snapshot.empty){
-    console.log('No matching documents.');
-    return;
+    res.send('no data');
   }
 
   let data = [];
