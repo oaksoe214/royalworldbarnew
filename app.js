@@ -160,8 +160,8 @@ app.get('/admin/roombookings', async function(req,res){
     
   });
 
-  console.log(doc);
-  res.send({'done'});
+  console.log(data);
+  res.send('done');
 });
 
 /*********************************************
