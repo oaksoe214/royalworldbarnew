@@ -20,7 +20,9 @@
 			<th>Time</th>
 			<th>Visit</th>
 			<th>Message</th>
-			<th>Reference No</th>
+			<th>Reference</th>
+			<th>Status</th>
+			<th>Action</th>
 		</tr>
 
 	<% data.forEach(function(roombooking){ %>
@@ -36,6 +38,8 @@
 			<td><%= roombooking.visit %></td>
 			<td><%= roombooking.message %></td>
 			<td><%= roombooking.ref %></td>
+			<td><%= roombooking.status %></td>
+			<td>Edit | Delete</td>
 		</tr>
 	<% }); %>
 
