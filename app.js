@@ -169,6 +169,7 @@ app.get('/admin/roombookings', async function(req,res){
 });
 
 app.get('/admin/updateroombooking/:doc_id', function(req,res){
+  let doc_id = req.params.doc_id;
   res.send(doc_id);
 });
 
