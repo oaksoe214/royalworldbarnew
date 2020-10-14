@@ -10,7 +10,7 @@
 
 	<table>
 
-	<%= data.forEach(function(roombooking){ %>
+	<% data.forEach(function(roombooking){ %>
 		<tr>
 			<td><%= roombooking.doc_id %></td>
 			<td><%= roombooking.name %></td>
@@ -25,7 +25,7 @@
 			<td><%= roombooking.ref %></td>
 		</tr>
 	<% }); %>
-	
+
 	</table>
 
 </body>
