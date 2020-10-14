@@ -147,14 +147,17 @@ app.post('/test',function(req,res){
 
 app.get('/admin/roombookings', async function(req,res){
   const roombookingRef = db.collection('roombookings');
-  const snapshot = await  roombookingRef.get();
+  const snapshot = await roombookingRef.get();
   if(snapshot.empty){
     console.log('No matching documents.');
     return;
   }
 
+  let data = [];
+
   snapshot.forEach(doc => {
-    console.log(doc.id, '=>', doc.data());
+    data.push(doc);
+    console.log(data);
   });
 
   //res.json({'text': 'here we will show all room bookings.'});
