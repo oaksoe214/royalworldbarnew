@@ -164,7 +164,7 @@ app.get('/admin/roombookings', async function(req,res){
     
   });
 
-  console.log(data);
+  console.log('DATA:', data);
 
   res.render('roombookings.ejs', {data:data});
 });
@@ -757,6 +757,7 @@ const confirmAppointment = (sender_psid) => {
 const saveRoomBooking = async (arg, sender_psid) =>{
   let data=arg;
   data.ref= generateRandom(6);
+  data.status = "pending";
   db.collection('roombookings').add(data).then((success)=>{
       console.log("SAVED", success);
       let text = "Thank you. We have received your appointment."+ "\u000A";
