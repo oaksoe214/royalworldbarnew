@@ -178,6 +178,7 @@ app.get('/admin/updateroombooking/:doc_id', async function(req,res){
   }else{
     console.log('Document data:', doc.data());
     let data = doc.data();
+    data.doc_id = doc_id;
     res.render('editroombookings.ejs',{data:data});
   }
 });
