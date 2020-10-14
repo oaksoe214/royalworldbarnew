@@ -50,20 +50,21 @@
     <label for="name">Appointment</label>
     <input type="text" class="form-control" name="appointment" placeholder="Enter Appointment">    
   </div>
-   <!-- <div class="form-group">
+   <div class="form-group">
     Visit:
-    <input type="radio" class="form-control" name="visit" value="first time" <%if(data.visit = 'first time'){%>
+    <input type="radio" name="visit" value="first time" 
+    <%if(data.visit == "first time"){%>
       <%="checked"%>
-    <%}%> 
+    <%}%>  
     >
-      <label for="name">First Time</label>
-      <input type="radio" class="form-control"  name="visit" value="first time"  <%if(data.visit = 'first time'){%>
+      <label for="name">First Time</label><br>
+      <input type="radio" class="form-control"  name="visit" value="first time"  
+     <%if(data.visit == "follow up"){%>
       <%="checked"%>
-      <%}%> 
+      <%}%>
       >
-      <label for="name">Follow up</label>
-      <input type="radio" class="form-control" name="visit" value="Follow up">
-  </div> -->
+      <label for="name">Follow up</label><br>
+  </div>
   <div class="form-group">
     <label for="name">Room Type</label>
     <input type="text" class="form-control" name="room" placeholder="Enter Room Type">    
@@ -76,19 +77,18 @@
     <label for="name">Message</label>
     <input type="text" class="form-control" name="message" placeholder="Enter Message">    
   </div>
-  <!-- <div class="form-group">
+  <div class="form-group">
     <select name="status" id="status">
       <option value="pending"
-       <%if(data.status = 'pending'){%>
+      <%if(data.status == "pending"){%>
       <%="selected"%>
       >Pending</option>
-      
       <option value="confirm"
-       <%if(data.status = 'confirm'){%>
+      <%if(data.status == "confirm"){%>
       <%="selected"%>
       >Confirm</option>
     </select>    
-  </div> -->
+  </div>
   <input type="hidden"  id="doc_id" name="doc_id" value="<%= data.doc_id %>">
   <input type="submit" value="Submit"> 
   </form>
