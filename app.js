@@ -327,13 +327,11 @@ function handleQuickReply(sender_psid, received_message) {
 
   if(received_message.startsWith("visit:")){
     let visit=received_message.slice(6);
-    // console.log('VISIT: ', visit);
     userInputs[user_id].visit=visit;
-    // console.log('TEST2',userInputs);
     current_question='q1';
     botQuestions(current_question, sender_psid);
   }else if(received_message.startsWith("roomfood:")){
-    let roomfood=received_message.slice(5);
+    let r_f=received_message.slice(5);
     userInputs[user_id].appointment=r_f;
     showRoom(sender_psid);
 
