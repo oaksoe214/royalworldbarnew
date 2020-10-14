@@ -145,7 +145,7 @@ app.post('/test',function(req,res){
     callSend(sender_psid, response);
 });
 
-app.get('/admin/roombookings', function(req,res){
+app.get('/admin/roombookings', async function(req,res){
   const roombookingRef = db.collection('roombookings');
   const snapshot = await  roombookingRef.get();
   if(snapshot.empty){
