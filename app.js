@@ -177,7 +177,8 @@ app.get('/admin/updateroombooking/:doc_id', async function(req,res){
     console.log('No such document!');s
   }else{
     console.log('Document data:', doc.data());
-    res.render('editroombookings.ejs');
+    let data = doc.data();
+    res.render('editroombookings.ejs', {data:data});
   }
 
   
