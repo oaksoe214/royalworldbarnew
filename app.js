@@ -746,8 +746,8 @@ const confirmAppointment = (sender_psid) => {
 
   }
   
-const saveRoomBooking(data){
-  const res = await db.collection('appointment').doc('user_id').set(data);
+const saveRoomBooking = async (data) =>{
+  const res = await db.collection('roombooking').doc('user_id').set(data);
   res.then(console.log(SAVED));
   }
 /****************
