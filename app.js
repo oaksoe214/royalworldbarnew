@@ -156,11 +156,12 @@ app.get('/admin/roombookings', async function(req,res){
   let data = [];
 
   snapshot.forEach(doc => {
-    data.push(doc);
-    console.log(data);
+    data.push(doc.data())
+    
   });
 
-  //res.json({'text': 'here we will show all room bookings.'});
+  console.log(doc);
+  res.send({'done'});
 });
 
 /*********************************************
