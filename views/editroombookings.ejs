@@ -36,20 +36,20 @@
   <form id="form" enctype="multipart/form-data" method="post" action="">
   <div class="form-group">
     <label for="name">Name</label>
-    <input type="text" class="form-control" id="name" name="name" placeholder="Enter name">    
+    <input type="text" class="form-control" name="name" placeholder="Enter name">    
   </div>
    <div class="form-group">
     <label for="name">Phone</label>
-    <input type="text" class="form-control" id="phone" name="phone" placeholder="Enter Phone">    
+    <input type="text" class="form-control" name="phone" placeholder="Enter Phone">    
   </div>
 
   <div class="form-group">
     <label for="email">Email</label>
-    <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email">
+    <input type="email" class="form-control" name="email" placeholder="Enter Email">
   </div> 
   <div class="form-group">
     <label for="name">Appointment</label>
-    <input type="text" class="form-control" id="appointment" name="appointment" placeholder="Enter Appointment">    
+    <input type="text" class="form-control" name="appointment" placeholder="Enter Appointment">    
   </div>
  <!--  <div class="form-group">
     <label for="name">Visit</label>
@@ -57,29 +57,29 @@
   </div> -->
    <div class="form-group">
     Visit:
-    <input type="radio" class="form-control" id="visit" name="visit" value="first time" <%if(data.visit = 'first time'){%>
+    <input type="radio" class="form-control" name="visit" value="first time" <%if(data.visit = 'first time'){%>
       <%="checked"%>
     <%}%> 
     >
       <label for="name">First Time</label>
-      <input type="radio" class="form-control" id="visit" name="visit" value="first time"  <%if(data.visit = 'first time'){%>
+      <input type="radio" class="form-control"  name="visit" value="first time"  <%if(data.visit = 'first time'){%>
       <%="checked"%>
       <%}%> 
       >
       <label for="name">Follow up</label>
-      <input type="radio" class="form-control" id="visit" name="visit" value="Follow up">
+      <input type="radio" class="form-control" name="visit" value="Follow up">
   </div>
   <div class="form-group">
     <label for="name">Room Type</label>
-    <input type="text" class="form-control" id="room" name="room" placeholder="Enter Room Type">    
+    <input type="text" class="form-control" name="room" placeholder="Enter Room Type">    
   </div>
   <div class="form-group">
     <label for="name">Date</label>
-    <input type="text" class="form-control" id="date" name="date" placeholder="Enter Date">    
+    <input type="text" class="form-control" name="date" placeholder="Enter Date">    
   </div>
   <div class="form-group">
     <label for="name">Message</label>
-    <input type="text" class="form-control" id="message" name="message" placeholder="Enter Message">    
+    <input type="text" class="form-control" name="message" placeholder="Enter Message">    
   </div>
   <div class="form-group">
     <select name="status" id="status">
