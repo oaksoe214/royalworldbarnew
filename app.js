@@ -344,7 +344,7 @@ function handleQuickReply(sender_psid, received_message) {
             showQuickReplyOff(sender_psid);
           break;   
         case "confirm-roombooking":
-            saveRoomBooking(userInputs[user_id]);
+            saveRoomBooking(userInputs[user_id], sender_psid);
           break;             
         default:
             defaultReply(sender_psid);
@@ -730,17 +730,19 @@ const confirmAppointment = (sender_psid) => {
 
   }
   
-const saveRoomBooking = async (arg) =>{
+const saveRoomBooking = async (arg, sender_psid) =>{
   let data=arg;
   data.ref= generateRandom(6);
-  const res = await db.collection('roombookings').add(data);
-  res.then(()=>{
-    let text = "Thank you. We have received your appointment."+ "\u000A";
-    text += "We will call you very soon to confirm"+ "\u000A";
-    text +="Your Booking reference number is:" + data.ref;
-    let response = {"text": "Complete Booking! Thank you for you booking and we will call you very soon to confirm. "};
-  callSend(sender_psid, response);
-  });
+  const res = await db.collection('roombookings').add(data).then(()=>{
+      console.log("SAVED", success);
+      let text = "Thank you. We have received your appointment."+ "\u000A";
+      text += "We will call you very soon to confirm"+ "\u000A";
+      text +="Your Booking reference number is:" + data.ref;
+      let response = {"text": "Complete Booking! Thank you for you booking and we will call you very soon to confirm. "};
+      callSend(sender_psid, response);
+    }).catch((err)=>{
+        console.log('Error', err);
+    });
   }
 /****************
 end room 
