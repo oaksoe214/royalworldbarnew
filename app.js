@@ -730,10 +730,25 @@ const confirmAppointment = (sender_psid) => {
 
   }
   
+// const saveRoomBooking = async (arg, sender_psid) =>{
+//   let data=arg;
+//   data.ref= generateRandom(6);
+//   const res = await db.collection('roombookings').add(data).then(()=>{
+//       console.log("SAVED", success);
+//       let text = "Thank you. We have received your appointment."+ "\u000A";
+//       text += "We will call you very soon to confirm"+ "\u000A";
+//       text +="Your Booking reference number is:" + data.ref;
+//       let response = {"text": text};
+//       callSend(sender_psid, response);
+//     }).catch((err)=>{
+//         console.log('Error', err);
+//     });
+//   }
+
 const saveRoomBooking = async (arg, sender_psid) =>{
   let data=arg;
   data.ref= generateRandom(6);
-  const res = await db.collection('roombookings').add(data).then(()=>{
+  db.collection('roombookings').add(data).then((success)=>{
       console.log("SAVED", success);
       let text = "Thank you. We have received your appointment."+ "\u000A";
       text += "We will call you very soon to confirm"+ "\u000A";
