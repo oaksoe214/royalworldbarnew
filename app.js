@@ -25,7 +25,7 @@ app.use(body_parser.urlencoded());
 
 const bot_questions ={
 "q1": "Please enter date (yyyy-mm-dd)",
-"q2": "Please enter time (hh:mm am or pm)",
+"q2": "Please enter time (hh:mm)",
 "q3": "Please enter full name",
 "q4": "Please enter phone",
 "q5": "Please enter email",
@@ -327,21 +327,18 @@ function handleQuickReply(sender_psid, received_message) {
 
   if(received_message.startsWith("visit:")){
     let visit=received_message.slice(6);
-    console.log('VISIT: ', visit);
+    // console.log('VISIT: ', visit);
     userInputs[user_id].visit=visit;
-    console.log('TEST2',userInputs);
+    // console.log('TEST2',userInputs);
     current_question='q1';
     botQuestions(current_question, sender_psid);
-  }
-  else{
-    switch(received_message) {     
-        case "room":
-          // console.log(USERID,user_id);
-          // console.log(USERINPUTS,userInputs);
-          userInputs[user_id].appointment='room';
-          showRoom(sender_psid);
-        break;
+  }else if(received_message.startsWith("roomfood:")){
+    let roomfood=received_message.slice(5);
+    userInputs[user_id].appointment=r_f;
+    showRoom(sender_psid);
 
+  }else{
+    switch(received_message) {     
         case "on":
             showQuickReplyOn(sender_psid);
           break;
@@ -420,16 +417,6 @@ const handleMessage = (sender_psid, received_message) => {
       case "appointment":
           appointment(sender_psid);
         break;
-      
-      // case "normal Room":
-      //     shownormalroom(sender_psid);
-      //   break;
-      // case "Medium Room":
-      //     showmediumroom(sender_psid);
-      //   break;
-      // case "Family Room":
-      //     showfamilyroom(sender_psid);
-      //   break;
       case "text":
         textReply(sender_psid);
         break;
@@ -437,7 +424,6 @@ const handleMessage = (sender_psid, received_message) => {
         quickReply(sender_psid);
         break;
       case "button":
-        // console.log('CASE: BUTTON');            
         buttonReply(sender_psid);
         break;
       case "webview":
@@ -523,7 +509,7 @@ const handlePostback = (sender_psid, received_postback) => {
 
 const generateRandom = (length) => {
    var result           = '';
-   var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+   var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
    var charactersLength = characters.length;
    for ( var i = 0; i < length; i++ ) {
       result += characters.charAt(Math.floor(Math.random() * charactersLength));
@@ -605,11 +591,11 @@ const appointment =(sender_psid) => {
             {
               "content_type":"text",
               "title":"Room",
-              "payload":"Room",              
+              "payload":"roomfood:Room",              
             },{
               "content_type":"text",
               "title":"Food",
-              "payload":"Food",             
+              "payload":"roomfood:Food",             
             }
     ]
   };
@@ -746,9 +732,17 @@ const confirmAppointment = (sender_psid) => {
 
   }
   
-const saveRoomBooking = async (data) =>{
-  const res = await db.collection('roombooking').doc('user_id').set(data);
-  res.then(console.log(SAVED));
+const saveRoomBooking = async (arg) =>{
+  let data=arg;
+  data.ref= generateRandom(6);
+  const res = await db.collection('roombooking').add(data);
+  res.then(()=>{
+    let text = "Thank you. We have received your appointment."+ "\u000A";
+    text += "We will call you very soon to confirm"+ "\u000A";
+    text +="Your Booking reference number is:" + data.ref;
+    let response = {"text": "Complete Booking! Thank you for you booking and we will call you very soon to confirm. "};
+  callSend(sender_psid, response);
+  });
   }
 /****************
 end room 
