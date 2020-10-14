@@ -51,15 +51,15 @@
     <input type="text" class="form-control" name="appointment" placeholder="Enter Appointment">    
   </div>
    <div class="form-group">
-    Visit:
+    <label for="name">Visit:</label>
     <input type="radio" name="visit" value="first time" 
-    <%if(true){%>
+    <%if(data.visit =="first time"){%>
       <%="checked"%>
     <%}%> 
     >
-      <label for="name">First Time</label><br>
-      <input type="radio" class="form-control"  name="visit" value="first time"  
-      <%if(true){%>
+      <label for="name">First Time</label>
+      <input type="radio" name="visit" value="follow up"  
+      <%if(data.visit =="follow up"){%>
       <%="checked"%>
       <%}%> 
       >
@@ -78,9 +78,18 @@
     <input type="text" class="form-control" name="message" placeholder="Enter Message">    
   </div>
   <div class="form-group">
+    <label for="name">Status:</label>
     <select name="status" id="status">
-      <option value="pending">Pending</option>
-      <option value="confirm">Confirm</option>
+      <option value="pending"
+      <%if(data.status =="pending"){%>
+      <%="selected"%>
+      <%}%>
+      >Pending</option>
+      <option value="confirm"
+      <%if(data.status =="confirm"){%>
+      <%="selected"%>
+      <%}%>
+      >Confirm</option>
     </select>    
   </div>
   <input type="hidden"  id="doc_id" name="doc_id" value="<%= data.doc_id %>">
