@@ -347,7 +347,10 @@ function handleQuickReply(sender_psid, received_message) {
           break;
         case "off":
             showQuickReplyOff(sender_psid);
-          break;                
+          break;   
+        case "confirm-roombooking":
+            saveRoomBooking(userInputs[user_id]);
+          break;             
         default:
             defaultReply(sender_psid);
   } 
@@ -729,7 +732,7 @@ const confirmAppointment = (sender_psid) => {
             {
               "content_type":"text",
               "title":"Confirm",
-              "payload":"on",              
+              "payload":"confirm-roombooking",              
             },{
               "content_type":"text",
               "title":"Cancel",
@@ -743,6 +746,10 @@ const confirmAppointment = (sender_psid) => {
 
   }
   
+const saveRoomBooking(data){
+  const res = await db.collection('appointment').doc('user_id').set(data);
+  res.then(console.log(SAVED));
+  }
 /****************
 end room 
 ****************/
