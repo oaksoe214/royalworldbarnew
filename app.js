@@ -183,7 +183,7 @@ app.get('/admin/updateroombooking/:doc_id', async function(req,res){
 });
 
 app.post('/admin/updateroombooking/', async function(req,res){
-  console.log('REQ:', req.params);
+  console.log('REQ:', req.body);
     
   res.send('ok');
   // const roombookingRef = db.collection('roombookings').doc(doc_id);
