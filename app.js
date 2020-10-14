@@ -168,6 +168,10 @@ app.get('/admin/roombookings', async function(req,res){
   res.render('roombookings.ejs', {data:data});
 });
 
+app.get('/admin/updateroombooking/:doc_id', function(req,res){
+  res.send(doc_id);
+});
+
 /*********************************************
 Gallery page
 **********************************************/
