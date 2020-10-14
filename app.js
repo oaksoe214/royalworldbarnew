@@ -157,7 +157,7 @@ app.get('/admin/roombookings', function(req,res){
     console.log(doc.id, '=>', doc.data());
   });
 
-  res.json({'text': 'here we will show all room bookings.'});
+  //res.json({'text': 'here we will show all room bookings.'});
 });
 
 /*********************************************
