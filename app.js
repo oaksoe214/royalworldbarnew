@@ -146,7 +146,18 @@ app.post('/test',function(req,res){
 });
 
 app.get('/admin/roombookings', function(req,res){
-  res.json({'text':'here we will show all room bookings'});
+  const roombookingRef = db.collection('roombookings');
+  const snapshot = await  roombookingRef.get();
+  if(snapshot.empty){
+    console.log('No matching documents.');
+    return;
+  }
+
+  snapshot.forEach(doc => {
+    console.log(doc.id, '=>', doc.data());
+  });
+
+  res.json({'text': 'here we will show all room bookings.'});
 });
 
 /*********************************************
