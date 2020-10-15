@@ -179,12 +179,17 @@ app.get('/admin/updateroombooking/:doc_id', async function(req,res){
     console.log('Document data:', doc.data());
     let data = doc.data();
     data.doc_id = doc_id;
+
+    console.log('Document data:', data);
     res.render('editroombookings.ejs',{data:data});
   }
 });
 
 app.post('/admin/updateroombooking/', async function(req,res){
   console.log('REQ:', req.body);
+
+  // const roombookingRef = db.collection('roombookings').doc('DC');
+  // const res  = await roombookingRef.update
     
   res.send('ok');
   // const roombookingRef = db.collection('roombookings').doc(doc_id);
