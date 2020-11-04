@@ -203,9 +203,9 @@ app.post('/admin/updateroombooking/', async function(req,res){
   }
   
   const roombookingRef = db.collection('roombookings').doc(req.body.doc_id);
-  const res  = await roombookingRef.update(data);
+  const response  = await roombookingRef.update(data);
 
-  res.then(() =>{
+  response.then(() =>{
     res.redirect('/admin/updateroombooking');
   })
 
