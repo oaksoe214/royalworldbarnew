@@ -187,20 +187,28 @@ app.get('/admin/updateroombooking/:doc_id', async function(req,res){
 
 app.post('/admin/updateroombooking/', async function(req,res){
   console.log('REQ:', req.body);
+  
+  let data = {
+    name:req.body.name,
+  phone:req.body.phone,
+  email:req.body.email,
+  appointment:req.body.appointment,
+  visit:req.body.visit,
+  datt:req.body.date,
+  time:req.body.time,
+  message:req.body.message,
+  status:req.body.status,
+  doc_id:req.body.doc_id,
+  ref:req.body.ref
+  }
+  
+  const roombookingRef = db.collection('roombookings').doc(req.body.doc_id);
+  const res  = await roombookingRef.update(data);
 
-  // const roombookingRef = db.collection('roombookings').doc('DC');
-  // const res  = await roombookingRef.update
-    
-  res.send('ok');
-  // const roombookingRef = db.collection('roombookings').doc(doc_id);
-  // const doc = await roombookingRef.get();
-  // if (!doc.exists){
-  //   console.log('No such document!');s
-  // }else{
-  //   console.log('Document data:', doc.data());
-  //   let data = doc.data();
-  //   res.render('editroombookings.ejs',{data:data});
-  // }
+  res.then(() =>{
+    res.redirect('/admin/updateroombooking');
+  })
+
 });
 
 /*********************************************
