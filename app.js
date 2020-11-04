@@ -181,11 +181,11 @@ app.get('/admin/updateroombooking/:doc_id', async function(req,res){
     data.doc_id = doc_id;
 
     console.log('Document data:', data);
-    res.render('editroombookings.ejs',{data:data});
+    res.render('editroombookings.ejs', {data:data});
   }
 });
 
-app.post('/admin/updateroombooking/', async function(req,res){
+app.post('/admin/updateroombooking', async function(req,res){
   console.log('REQ:', req.body);
   
   let data = {
