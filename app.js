@@ -192,7 +192,7 @@ app.post('/admin/updateroombooking/', async function(req,res){
     name:req.body.name,
     phone:req.body.phone,
     email:req.body.email,
-    appointment:req.body.appointment,
+    room:req.body.room,
     visit:req.body.visit,
     date:req.body.date,
     time:req.body.time,
@@ -202,12 +202,9 @@ app.post('/admin/updateroombooking/', async function(req,res){
     ref:req.body.ref
   }
   
-  const roombookingRef = db.collection('roombookings').doc(req.body.doc_id);
-  const response  = await roombookingRef.update(data);
-
-  response.then(() =>{
-    res.redirect('/admin/roombooking');
-  })
+  db.collection('roombookings').doc(req.body.doc_id).update(data).then(() =>{
+    res.redirect('/admin/roombookings');
+  }).catch((err)=>console.log('ERROR:',error));
 
 });
 
