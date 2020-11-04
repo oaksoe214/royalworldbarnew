@@ -190,16 +190,16 @@ app.post('/admin/updateroombooking/', async function(req,res){
   
   let data = {
     name:req.body.name,
-  phone:req.body.phone,
-  email:req.body.email,
-  appointment:req.body.appointment,
-  visit:req.body.visit,
-  datt:req.body.date,
-  time:req.body.time,
-  message:req.body.message,
-  status:req.body.status,
-  doc_id:req.body.doc_id,
-  ref:req.body.ref
+    phone:req.body.phone,
+    email:req.body.email,
+    appointment:req.body.appointment,
+    visit:req.body.visit,
+    date:req.body.date,
+    time:req.body.time,
+    message:req.body.message,
+    status:req.body.status,
+    doc_id:req.body.doc_id,
+    ref:req.body.ref
   }
   
   const roombookingRef = db.collection('roombookings').doc(req.body.doc_id);
