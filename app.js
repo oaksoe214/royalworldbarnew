@@ -206,7 +206,7 @@ app.post('/admin/updateroombooking/', async function(req,res){
   const response  = await roombookingRef.update(data);
 
   response.then(() =>{
-    res.redirect('/admin/roombookings');
+    res.redirect('/admin/roombooking');
   })
 
 });
