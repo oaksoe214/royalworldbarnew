@@ -203,7 +203,7 @@ app.post('/admin/updateroombooking/', async function(req,res){
   }
   
   db.collection('roombookings').doc(req.body.doc_id).update(data).then(() =>{
-    res.redirect('/admin/roombookings');
+    res.redirect('/admin/roombooking');
   }).catch((err)=>console.log('ERROR:',error));
 
 });
