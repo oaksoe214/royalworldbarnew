@@ -168,7 +168,7 @@ app.get('/admin/roombookings', async function(req,res){
   res.render('roombookings.ejs', {data:data});
 });
 
-app.get('/admin/updateroombooking/:doc_id', async function(req,res){
+app.get('/admin/updateroombookings/:doc_id', async function(req,res){
   let doc_id = req.params.doc_id;
     
   const roombookingRef = db.collection('roombookings').doc(doc_id);
@@ -185,7 +185,7 @@ app.get('/admin/updateroombooking/:doc_id', async function(req,res){
   }
 });
 
-app.post('/admin/updateroombooking', async function(req,res){
+app.post('/admin/updateroombookings', async function(req,res){
   console.log('REQ:', req.body);
   
   let data = {
