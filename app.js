@@ -188,24 +188,25 @@ app.get('/admin/updateroombooking/:doc_id', async function(req,res){
 app.post('/admin/updateroombooking', async function(req,res){
   console.log('REQ:', req.body);
   
-  let data = {
-    name:req.body.name,
-    phone:req.body.phone,
-    email:req.body.email,
-    room:req.body.room,
-    visit:req.body.visit,
-    date:req.body.date,
-    time:req.body.time,
-    message:req.body.message,
-    status:req.body.status,
-    doc_id:req.body.doc_id,
-    ref:req.body.ref
-  }
+  res.send('ok');
+  // let data = {
+  //   name:req.body.name,
+  //   phone:req.body.phone,
+  //   email:req.body.email,
+  //   room:req.body.room,
+  //   visit:req.body.visit,
+  //   date:req.body.date,
+  //   time:req.body.time,
+  //   message:req.body.message,
+  //   status:req.body.status,
+  //   doc_id:req.body.doc_id,
+  //   ref:req.body.ref
+  // }
   
-  db.collection('roombookings').doc(req.body.doc_id)
-  .update(data).then(()=>{
-    res.redirect('/admin/roombookings');
-  }).catch((err)=>console.log('ERROR:',error));
+  // db.collection('roombookings').doc(req.body.doc_id)
+  // .update(data).then(()=>{
+  //   res.redirect('/admin/roombookings');
+  // }).catch((err)=>console.log('ERROR:',error));
 
 });
 
