@@ -8,6 +8,49 @@
 
 </head>
 <body>
+
+	<h1>Appointment</h1>
+
+	<form id="form" enctype="multipart/form-data" action="appointment">
+	<!-- <input type="date" name="type" value="<%= type =%>" disable/> -->
+	<select name="type">
+		<option>Normal Room</option>
+		<option>Medium Room</option>
+		<option>Family Room</option>
+	</select>
+	<input type="text" name="name"/>
+	<input type="text" name="phone"/>
+	<input type="text" name="guests"/>
+	<input type="date" name="date"/>
+	<select name="time">
+		<option>4PM</option>
+		<option>5PM</option>
+		<option>6PM</option>
+		<option>7PM</option>
+		<option>8PM</option>
+		<option>9PM</option>
+		<option>10PM</option>
+		<option>11PM</option>
+	</select>
+	<textarea name="message">
+	</textarea>
+	<input type="submit" name="btnsubmit">
+</form>
+
+
+</body>
+</html>
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Appointments</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
 	 <script>
       (function(d, s, id){
       var js, fjs = d.getElementsByTagName(s)[0];
@@ -58,10 +101,10 @@
 	</select>
 	<textarea name="message">
 	</textarea>
-	<input type="text"  id="sender" name="sender" value="<%= sender_id %>">
-  <input type="submit" value="Submit"> 
+	<input type="text"  id="sender" name="sender" value="<%= sender_id %>" />
+  	<input type="submit" value="Submit" /> 
 </form>
 
 
 </body>
-</html>
+</html> -->
