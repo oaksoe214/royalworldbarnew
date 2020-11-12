@@ -145,8 +145,9 @@ app.post('/test',function(req,res){
     callSend(sender_psid, response);
 });
 
-app.get('/appointment', async function(req,res){
-  res.render('appointment.ejs');
+app.get('/appointment:type', async function(req,res){
+  let type = req.params.type;
+  res.render('appointment.ejs'.{type:type});
 });
 
 app.post('/appointment', async function(req,res){
