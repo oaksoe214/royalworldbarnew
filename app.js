@@ -743,7 +743,7 @@ const showPromotion =(sender_psid) => {
           "elements": [{
             "title": "Chicken Wing",
             "subtitle": "4 pieces",
-            "image_url":"https://www.google.com/url?sa=i&url=https%3A%2F%2Ftrentapizza.co.uk%2Fproduct%2Fbuffalo-chicken-wings%2F&psig=AOvVaw2P0gGqkYaaNF5lwhCgr5DS&ust=1605294217030000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCJCa35LZ_ewCFQAAAAAdAAAAABBD",
+            "image_url":"https://cravinghomecooked.com/wp-content/uploads/2019/08/crispy-fried-chicken-1-650x813.jpg.webp",
             "buttons": [
                 {
                   "type": "postback",
@@ -753,26 +753,26 @@ const showPromotion =(sender_psid) => {
               ],
           },
           {
-            "title": "Fried Noodle",
-            "subtitle": "Suitable (3-6 people)",
-            "image_url":"https://imaginahome.com/wp-content/uploads/2017/06/wet-bar-design-ideas-1920x1280.jpg",                       
+            "title": "Pork-chops",
+            "subtitle": "Hot and Spicy",
+            "image_url":"https://cravinghomecooked.com/wp-content/uploads/2019/03/oven-baked-pork-chops-1-5-650x975.jpg.webp",                       
             "buttons": [
                 {
                   "type": "postback",
-                  "title": "Medium Room",
-                  "payload": "Room:Medium Room",
+                  "title": "Pork-chops",
+                  "payload": "Appointment:Pork-chops",
                 }
               ],
           },
           {
-            "title": "Family Room",
-            "subtitle": "Suitable (4-10 people)",
-            "image_url":"https://i02.appmifile.com/564_bbs_en/30/04/2020/bad9864ed3.png",                       
+            "title": "Marinated Top Round Steak",
+            "subtitle": "with Fresh Vegetable",
+            "image_url":"https://www.thespruceeats.com/thmb/hl4lkmdLO7tj1eDCsGbakfk97Co=/3088x2055/filters:fill(auto,1)/marinated-top-round-steak-3060302-hero-02-ed071d5d7e584bea82857112aa734a94.jpg",                       
             "buttons": [
                 {
                   "type": "postback",
-                  "title": "Family Room",
-                  "payload": "Room:Family Room",
+                  "title": "Marinated Top Round Steak",
+                  "payload": "Appointment:Marinated Top Round Steak",
                 }
               ],
           }
