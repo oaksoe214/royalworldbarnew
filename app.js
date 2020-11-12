@@ -145,9 +145,12 @@ app.post('/test',function(req,res){
     callSend(sender_psid, response);
 });
 
-app.get('/appointment', async function(req,res){
-  res.render('appointment.ejs');
-});
+// app.get('/appointment', async function(req,res){
+//   res.render('appointment.ejs');
+// });
+app.get('/appointment/:sender_id',function(req,res){
+    const sender_id = req.params.sender_id;
+    res.render('appointment.ejs',{title:"Hello!! from WebViewappointment", sender_id:sender_id});
 
 app.post('/appointment', async function(req,res){
   userInputs[user_id].type = req.body.type,
