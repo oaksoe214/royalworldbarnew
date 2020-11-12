@@ -153,14 +153,16 @@ app.get('/appointment/:sender_id',function(req,res){
     res.render('appointment.ejs',{title:"Hello!! from WebViewappointment", sender_id:sender_id});
 });
 app.post('/appointment', async function(req,res){
-  userInputs[user_id].type = req.body.type,
-  userInputs[user_id].name = req.body.name,
-  userInputs[user_id].guest = parseInt(req.body.guest),
-  userInputs[user_id].phone = req.body.phone,
-  userInputs[user_id].date = req.body.date,
-  userInputs[user_id].time = req.body.time,
-  userInputs[user_id].message = req.body.message,
+  userInputs[user_id].type = req.body.type;
+  userInputs[user_id].name = req.body.name;
+  userInputs[user_id].guest = parseInt(req.body.guest);
+  userInputs[user_id].phone = req.body.phone;
+  userInputs[user_id].date = req.body.date;
+  userInputs[user_id].time = req.body.time;
+  userInputs[user_id].message = req.body.message;
+
   saveRoomBooking(userInputs[user_id], sender_psid);
+  
   //confirmAppointment(user_id);
 
   // db.collection('roombookings').doc(req.body.doc_id)
