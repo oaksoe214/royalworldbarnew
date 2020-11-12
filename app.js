@@ -145,9 +145,8 @@ app.post('/test',function(req,res){
     callSend(sender_psid, response);
 });
 
-app.get('/appointment:type', async function(req,res){
-  let type = req.params.type;
-  res.render('appointment.ejs', {data:type});
+app.get('/appointment', async function(req,res){
+  res.render('appointment.ejs');
 });
 
 app.post('/appointment', async function(req,res){
@@ -685,7 +684,7 @@ function webviewappointment(sender_psid){
               {
                 "type": "web_url",
                 "title": "appointment",
-                "url":APP_URL+"appointment/Normal"+sender_psid,
+                "url":APP_URL+"appointment/"+sender_psid,
                  "webview_height_ratio": "full",
                 "messenger_extensions": true,          
               },
