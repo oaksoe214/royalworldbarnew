@@ -684,7 +684,7 @@ function webviewappointment(sender_psid){
               {
                 "type": "web_url",
                 "title": "appointment",
-                "url":APP_URL+"appointment/Normal"+sender_psid,
+                "url":APP_URL+"appointment/Normal Room"+sender_psid,
                  "webview_height_ratio": "full",
                 "messenger_extensions": true,          
               },
@@ -737,7 +737,7 @@ const showRoom =(sender_psid) => {
                 {
                   "type": "postback",
                   "title": "Normal Room",
-                  "payload": "Room:Normal Room",
+                  "payload": "Appointment:Normal Room",
                 }
               ],
           },
@@ -749,7 +749,7 @@ const showRoom =(sender_psid) => {
                 {
                   "type": "postback",
                   "title": "Medium Room",
-                  "payload": "Room:Medium Room",
+                  "payload": "Appointment:Medium Room",
                 }
               ],
           },
@@ -761,7 +761,7 @@ const showRoom =(sender_psid) => {
                 {
                   "type": "postback",
                   "title": "Family Room",
-                  "payload": "Room:Family Room",
+                  "payload": "Appointment:Family Room",
                 }
               ],
           }
@@ -788,7 +788,7 @@ const showPromotion =(sender_psid) => {
                 {
                   "type": "postback",
                   "title": "Chicken Wing",
-                  "payload": "Appointment:Chicken Wing",
+                  "payload": "Promotion:Chicken Wing",
                 }
               ],
           },
@@ -800,7 +800,7 @@ const showPromotion =(sender_psid) => {
                 {
                   "type": "postback",
                   "title": "Pork-chops",
-                  "payload": "Appointment:Pork-chops",
+                  "payload": "Promotion:Pork-chops",
                 }
               ],
           },
@@ -812,7 +812,7 @@ const showPromotion =(sender_psid) => {
                 {
                   "type": "postback",
                   "title": "Marinated Steak",
-                  "payload": "Appointment:Marinated Steak",
+                  "payload": "Promotion:Marinated Steak",
                 }
               ],
           }
