@@ -684,7 +684,7 @@ function webviewappointment(sender_psid){
               {
                 "type": "web_url",
                 "title": "appointment",
-                "url":APP_URL+"appointment/Normal Room"+sender_psid,
+                "url":APP_URL+"appointment/Normal"+sender_psid,
                  "webview_height_ratio": "full",
                 "messenger_extensions": true,          
               },
@@ -737,7 +737,7 @@ const showRoom =(sender_psid) => {
                 {
                   "type": "postback",
                   "title": "Normal Room",
-                  "payload": "Appointment:Normal Room",
+                  "payload": "Appointment:Normal",
                 }
               ],
           },
@@ -749,7 +749,7 @@ const showRoom =(sender_psid) => {
                 {
                   "type": "postback",
                   "title": "Medium Room",
-                  "payload": "Appointment:Medium Room",
+                  "payload": "Appointment:Medium",
                 }
               ],
           },
@@ -761,7 +761,7 @@ const showRoom =(sender_psid) => {
                 {
                   "type": "postback",
                   "title": "Family Room",
-                  "payload": "Appointment:Family Room",
+                  "payload": "Appointment:Family",
                 }
               ],
           }
