@@ -145,6 +145,20 @@ app.post('/test',function(req,res){
     callSend(sender_psid, response);
 });
 
+app.get('/appointment', async function(req,res){
+  res.render('appointment.ejs');
+});
+
+app.post('/appointment', async function(req,res){
+  userInputs[user_id].type = req.body.type,
+  userInputs[user_id].name = req.body.name,
+  userInputs[user_id].guests = parseInt(req.body.guests),
+  userInputs[user_id].phone = req.body.phone,
+  userInputs[user_id].time = req.body.time
+  confirmAppointment(user_id);
+
+});
+
 app.get('/admin/roombookings', async function(req,res){
   const roombookingsRef = db.collection('roombookings');
   const snapshot = await roombookingsRef.get();
@@ -400,9 +414,6 @@ function handleQuickReply(sender_psid, received_message) {
     let appoint=received_message.slice(8);
     userInputs[user_id].appointment=appoint;
     showRoom(sender_psid);
-    current_question='q2';
-    botQuestions(current_question, sender_psid);
-
   }else if(received_message.startsWith("promotion:")){
     let pro=received_message.slice(10);
     userInputs[user_id].appointment=pro;
@@ -562,6 +573,7 @@ const handlePostback = (sender_psid, received_postback) => {
     userInputs[user_id].room=room_type;
     console.log('TEST',userInputs);
     //firstOrFollowup(sender_psid);
+    webviewappointment(sender_psid);
     callSend(sender_psid, response);
   }
   else if(payload.startsWith("Promotion:")){
@@ -647,6 +659,32 @@ function webviewTest(sender_psid){
                 "type": "web_url",
                 "title": "webview",
                 "url":APP_URL+"webview/"+sender_psid,
+                 "webview_height_ratio": "full",
+                "messenger_extensions": true,          
+              },
+              
+            ],
+          }]
+        }
+      }
+    }
+  callSendAPI(sender_psid, response);
+}
+
+function webviewappointment(sender_psid){
+  let response;
+  response = {
+      "attachment": {
+        "type": "template",
+        "payload": {
+          "template_type": "generic",
+          "elements": [{
+            "title": "Do you want to make appointment?",                       
+            "buttons": [              
+              {
+                "type": "web_url",
+                "title": "appointment",
+                "url":APP_URL+"appointment/Normal"+sender_psid,
                  "webview_height_ratio": "full",
                 "messenger_extensions": true,          
               },
