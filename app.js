@@ -147,7 +147,7 @@ app.post('/test',function(req,res){
 
 app.get('/appointment:type', async function(req,res){
   let type = req.params.type;
-  res.render('appointment.ejs'.{type:type});
+  res.render('appointment.ejs', {data:type});
 });
 
 app.post('/appointment', async function(req,res){
