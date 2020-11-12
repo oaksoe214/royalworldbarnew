@@ -199,8 +199,8 @@ app.post('/admin/updateroombooking', async function(req,res){
     message:req.body.message,
     status:req.body.status,
     doc_id:req.body.doc_id,
-    ref:req.body.ref,
-    comment:req.body.comment
+    ref:req.body.ref
+    // comment:req.body.comment
   }
   
   db.collection('roombookings').doc(req.body.doc_id)
@@ -548,12 +548,21 @@ const handlePostback = (sender_psid, received_postback) => {
   let payload = received_postback.payload;
   console.log('BUTTON PAYLOAD', payload);
   
-  if(payload.startsWith("Room:")){
-    let room_type=payload.slice(5);
+  if(payload.startsWith("Appointment:")){
+    let room_type=payload.slice(12);
     console.log("SELECTED ROOM IS: ", room_type);
     userInputs[user_id].room=room_type;
     console.log('TEST',userInputs);
-    firstOrFollowup(sender_psid);
+    //firstOrFollowup(sender_psid);
+    callSend(sender_psid, response);
+  }
+  else if(payload.startsWith("Promotion:")){
+    let room_type=payload.slice(10);
+    console.log("SELECTED Promotion IS: ", room_type);
+    userInputs[user_id].room=room_type;
+    console.log('TEST',userInputs);
+    //firstOrFollowup(sender_psid);
+    callSend(sender_psid, response);
   }
   else{
       switch(payload) {        
@@ -649,16 +658,16 @@ start room
 const appointment =(sender_psid) => {
   let response1 = {"text": "Welcome to Royal World Bar"};
   let response2 = {
-    "text": "Please Select Room or Food",
+    "text": "How May I Help You?",
     "quick_replies":[
             {
               "content_type":"text",
-              "title":"Room",
-              "payload":"roomfood:Room",              
+              "title":"Appointment",
+              "payload":"roomfood:Appointment",              
             },{
               "content_type":"text",
-              "title":"Food",
-              "payload":"roomfood:Food",             
+              "title":"Promotion",
+              "payload":"roomfood:Promotion",             
             }
     ]
   };
