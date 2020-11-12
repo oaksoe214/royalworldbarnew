@@ -390,15 +390,21 @@ function handleQuickReply(sender_psid, received_message) {
 
   received_message=received_message.toLowerCase();
 
-  if(received_message.startsWith("visit:")){
-    let visit=received_message.slice(6);
-    userInputs[user_id].visit=visit;
-    current_question='q1';
-    botQuestions(current_question, sender_psid);
-  }else if(received_message.startsWith("roomfood:")){
-    let r_f=received_message.slice(9);
-    userInputs[user_id].appointment=r_f;
+  // if(received_message.startsWith("visit:")){
+  //   let visit=received_message.slice(6);
+  //   userInputs[user_id].visit=visit;
+  //   current_question='q1';
+  //   botQuestions(current_question, sender_psid);
+  // }else 
+  if(received_message.startsWith("appoint:")){
+    let appoint=received_message.slice(8);
+    userInputs[user_id].appointment=appoint;
     showRoom(sender_psid);
+
+  }else if(received_message.startsWith("promotion:")){
+    let pro=received_message.slice(10);
+    userInputs[user_id].appointment=pro;
+    showPromotion(sender_psid);
 
   }else{
     switch(received_message) {     
@@ -557,9 +563,9 @@ const handlePostback = (sender_psid, received_postback) => {
     callSend(sender_psid, response);
   }
   else if(payload.startsWith("Promotion:")){
-    let room_type=payload.slice(10);
-    console.log("SELECTED Promotion IS: ", room_type);
-    userInputs[user_id].room=room_type;
+    let promo=payload.slice(10);
+    console.log("SELECTED Promotion IS: ", promo);
+    userInputs[user_id].promethod=promo;
     console.log('TEST',userInputs);
     //firstOrFollowup(sender_psid);
     callSend(sender_psid, response);
@@ -663,11 +669,11 @@ const appointment =(sender_psid) => {
             {
               "content_type":"text",
               "title":"Appointment",
-              "payload":"roomfood:Appointment",              
+              "payload":"appoint:Appointment",              
             },{
               "content_type":"text",
               "title":"Promotion",
-              "payload":"roomfood:Promotion",             
+              "payload":"promotion:Promotion",             
             }
     ]
   };
@@ -697,6 +703,57 @@ const showRoom =(sender_psid) => {
           },
           {
             "title": "Medium Room",
+            "subtitle": "Suitable (3-6 people)",
+            "image_url":"https://imaginahome.com/wp-content/uploads/2017/06/wet-bar-design-ideas-1920x1280.jpg",                       
+            "buttons": [
+                {
+                  "type": "postback",
+                  "title": "Medium Room",
+                  "payload": "Room:Medium Room",
+                }
+              ],
+          },
+          {
+            "title": "Family Room",
+            "subtitle": "Suitable (4-10 people)",
+            "image_url":"https://i02.appmifile.com/564_bbs_en/30/04/2020/bad9864ed3.png",                       
+            "buttons": [
+                {
+                  "type": "postback",
+                  "title": "Family Room",
+                  "payload": "Room:Family Room",
+                }
+              ],
+          }
+
+          ]
+        }
+      }
+    }
+  callSend(sender_psid, response);
+
+}
+
+const showPromotion =(sender_psid) => {
+  let response = {
+      "attachment": {
+        "type": "template",
+        "payload": {
+          "template_type": "generic",
+          "elements": [{
+            "title": "Chicken Wing",
+            "subtitle": "4 pieces",
+            "image_url":"https://www.google.com/url?sa=i&url=https%3A%2F%2Ftrentapizza.co.uk%2Fproduct%2Fbuffalo-chicken-wings%2F&psig=AOvVaw2P0gGqkYaaNF5lwhCgr5DS&ust=1605294217030000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCJCa35LZ_ewCFQAAAAAdAAAAABBD",
+            "buttons": [
+                {
+                  "type": "postback",
+                  "title": "Chicken Wing",
+                  "payload": "Appointment:Chicken Wing",
+                }
+              ],
+          },
+          {
+            "title": "Fried Noodle",
             "subtitle": "Suitable (3-6 people)",
             "image_url":"https://imaginahome.com/wp-content/uploads/2017/06/wet-bar-design-ideas-1920x1280.jpg",                       
             "buttons": [
