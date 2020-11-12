@@ -9,7 +9,12 @@
 	<h1>Appointment</h1>
 
 	<form action="appointment">
-	<input type="date" name="type" value="<%= type =%>" disable/>
+	<!-- <input type="date" name="type" value="<%= type =%>" disable/> -->
+	<select name="type">
+		<option>Normal Room</option>
+		<option>Medium Room</option>
+		<option>Family Room</option>
+	</select>
 	<input type="text" name="name"/>
 	<input type="text" name="phone"/>
 	<input type="text" name="guests"/>
@@ -26,7 +31,7 @@
 	</select>
 	<textarea name="message">
 	</textarea>
-	<input type="submit" name="">
+	<input type="submit" name="btnsubmit">
 </form>
 
 

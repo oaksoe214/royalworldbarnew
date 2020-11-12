@@ -413,6 +413,8 @@ function handleQuickReply(sender_psid, received_message) {
   if(received_message.startsWith("appoint:")){
     let appoint=received_message.slice(8);
     userInputs[user_id].appointment=appoint;
+    current_question='q1';
+    botQuestions(current_question, sender_psid);
     showRoom(sender_psid);
   }else if(received_message.startsWith("promotion:")){
     let pro=received_message.slice(10);
