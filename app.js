@@ -413,8 +413,6 @@ function handleQuickReply(sender_psid, received_message) {
   if(received_message.startsWith("appoint:")){
     let appoint=received_message.slice(8);
     userInputs[user_id].appointment=appoint;
-    current_question='q1';
-    botQuestions(current_question, sender_psid);
     showRoom(sender_psid);
   }else if(received_message.startsWith("promotion:")){
     let pro=received_message.slice(10);
@@ -739,7 +737,7 @@ const showRoom =(sender_psid) => {
                 {
                   "type": "postback",
                   "title": "Normal Room",
-                  "payload": "Appointment:Normal",
+                  "payload": "appointment:Normal",
                 }
               ],
           },
@@ -751,7 +749,7 @@ const showRoom =(sender_psid) => {
                 {
                   "type": "postback",
                   "title": "Medium Room",
-                  "payload": "Appointment:Medium",
+                  "payload": "appointment:Medium",
                 }
               ],
           },
@@ -763,7 +761,7 @@ const showRoom =(sender_psid) => {
                 {
                   "type": "postback",
                   "title": "Family Room",
-                  "payload": "Appointment:Family",
+                  "payload": "appointment:Family",
                 }
               ],
           }
