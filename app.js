@@ -400,6 +400,8 @@ function handleQuickReply(sender_psid, received_message) {
     let appoint=received_message.slice(8);
     userInputs[user_id].appointment=appoint;
     showRoom(sender_psid);
+    current_question='q2';
+    botQuestions(current_question, sender_psid);
 
   }else if(received_message.startsWith("promotion:")){
     let pro=received_message.slice(10);
@@ -771,8 +773,8 @@ const showPromotion =(sender_psid) => {
             "buttons": [
                 {
                   "type": "postback",
-                  "title": "Marinated Top Round Steak",
-                  "payload": "Appointment:Marinated Top Round Steak",
+                  "title": "Marinated Steak",
+                  "payload": "Appointment:Marinated Steak",
                 }
               ],
           }
@@ -785,29 +787,30 @@ const showPromotion =(sender_psid) => {
 
 }
 
-const firstOrFollowup =(sender_psid) => {  
-  let response = {
-    "text": "First Time Visit or Follow Up?",
-    "quick_replies":[
-            {
-              "content_type":"text",
-              "title":"First Time",
-              "payload":"visit:first time",              
-            },{
-              "content_type":"text",
-              "title":"Follow Up",
-              "payload":"visit:follow up",             
-            }
-    ]
-  };
-  callSend(sender_psid, response);
-}
+// const firstOrFollowup =(sender_psid) => {  
+//   let response = {
+//     "text": "First Time Visit or Follow Up?",
+//     "quick_replies":[
+//             {
+//               "content_type":"text",
+//               "title":"First Time",
+//               "payload":"visit:first time",              
+//             },{
+//               "content_type":"text",
+//               "title":"Follow Up",
+//               "payload":"visit:follow up",             
+//             }
+//     ]
+//   };
+//   callSend(sender_psid, response);
+// }
 
 const botQuestions = (current_question,sender_psid) => {
   if(current_question =='q1'){
     let response = {"text": bot_questions.q1};
   callSend(sender_psid, response);
-  }else if(current_question =='q2'){
+  }else 
+  if(current_question =='q2'){
     let response = {"text": bot_questions.q2};
   callSend(sender_psid, response);
   }else if(current_question =='q3'){
