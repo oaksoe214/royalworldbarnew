@@ -157,6 +157,12 @@ app.post('/appointment', async function(req,res){
   userInputs[user_id].time = req.body.time
   confirmAppointment(user_id);
 
+  db.collection('roombookings').doc(req.body.doc_id)
+  .update(data).then(()=>{
+    res.redirect('/admin/roombookings');
+  }).catch((err)=>console.log('ERROR:',error));
+
+
 });
 
 app.get('/admin/roombookings', async function(req,res){
@@ -672,28 +678,44 @@ function webviewTest(sender_psid){
 }
 
 function webviewappointment(sender_psid){
-  let response;
-  response = {
-      "attachment": {
-        "type": "template",
-        "payload": {
-          "template_type": "generic",
-          "elements": [{
-            "title": "Do you want to make appointment?",                       
-            "buttons": [              
-              {
-                "type": "web_url",
-                "title": "appointment",
-                "url":APP_URL+"appointment/"+sender_psid,
-                 "webview_height_ratio": "full",
-                "messenger_extensions": true,          
-              },
+  // let response;
+  // response = {
+  //     "attachment": {
+  //       "type": "template",
+  //       "payload": {
+  //         "template_type": "generic",
+  //         "elements": [{
+  //           "title": "Do you want to make appointment?",                       
+  //           "buttons": [              
+  //             {
+  //               "type": "web_url",
+  //               "title": "appointment",
+  //               "url":APP_URL+"appointment/"+sender_psid,
+  //                "webview_height_ratio": "full",
+  //               "messenger_extensions": true,          
+  //             },
               
-            ],
-          }]
-        }
-      }
-    }
+  //           ],
+  //         }]
+  //       }
+  //     }
+  //   }
+
+  let response = {
+    "text": "Do you want to make appointment?",
+    "quick_replies":[
+            {
+              "content_type":"button",
+              "title":"Yes",
+              "url":APP_URL+"appointment/"+sender_psid,              
+            },{
+              "content_type":"button",
+              "title":"No",
+              "payload":"promotion:Promotion",             
+            }
+    ]
+  }
+
   callSendAPI(sender_psid, response);
 }
 
