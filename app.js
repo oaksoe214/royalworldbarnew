@@ -155,9 +155,11 @@ app.get('/appointment/:sender_id',function(req,res){
 app.post('/appointment', async function(req,res){
   userInputs[user_id].type = req.body.type,
   userInputs[user_id].name = req.body.name,
-  userInputs[user_id].guests = parseInt(req.body.guests),
+  userInputs[user_id].guest = parseInt(req.body.guest),
   userInputs[user_id].phone = req.body.phone,
-  userInputs[user_id].time = req.body.time
+  userInputs[user_id].date = req.body.date,
+  userInputs[user_id].time = req.body.time,
+  userInputs[user_id].message = req.body.message,
   confirmAppointment(user_id);
 
   db.collection('roombookings').doc(req.body.doc_id)
@@ -894,14 +896,22 @@ const botQuestions = (current_question,sender_psid) => {
 
 const confirmAppointment = (sender_psid) => {
   console.log('BOOKING INFO',userInputs);
-   let Summary = "appointment:" + userInputs[user_id].appointment + "\u000A";
-   Summary += "room:" + userInputs[user_id].room + "\u000A";
-   Summary += "visit:" + userInputs[user_id].visit + "\u000A";
+   // let Summary = "appointment:" + userInputs[user_id].appointment + "\u000A";
+   // Summary += "room:" + userInputs[user_id].room + "\u000A";
+   // Summary += "visit:" + userInputs[user_id].visit + "\u000A";
+   // Summary += "date:" + userInputs[user_id].date + "\u000A";
+   // Summary += "time:" + userInputs[user_id].time + "\u000A";
+   // Summary += "name:" + userInputs[user_id].name + "\u000A";
+   // Summary += "phone:" + userInputs[user_id].phone + "\u000A";
+   // Summary += "email:" + userInputs[user_id].email + "\u000A";
+   // Summary += "message:" + userInputs[user_id].message + "\u000A";
+
+   let Summary = "name:" + userInputs[user_id].name + "\u000A";
+   Summary += "type:" + userInputs[user_id].type + "\u000A";
+   Summary += "guest:" + userInputs[user_id].guest + "\u000A";
    Summary += "date:" + userInputs[user_id].date + "\u000A";
    Summary += "time:" + userInputs[user_id].time + "\u000A";
-   Summary += "name:" + userInputs[user_id].name + "\u000A";
-   Summary += "phone:" + userInputs[user_id].phone + "\u000A";
-   Summary += "email:" + userInputs[user_id].email + "\u000A";
+   Summary += "type:" + userInputs[user_id].name + "\u000A";
    Summary += "message:" + userInputs[user_id].message + "\u000A";
    
   let response1 = {"text": Summary};
