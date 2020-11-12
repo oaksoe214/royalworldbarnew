@@ -737,7 +737,7 @@ const showRoom =(sender_psid) => {
                 {
                   "type": "postback",
                   "title": "Normal Room",
-                  "payload": "appointment:Normal",
+                  "payload": "Appointment:Normal",
                 }
               ],
           },
@@ -749,7 +749,7 @@ const showRoom =(sender_psid) => {
                 {
                   "type": "postback",
                   "title": "Medium Room",
-                  "payload": "appointment:Medium",
+                  "payload": "Appointment:Medium",
                 }
               ],
           },
@@ -761,7 +761,7 @@ const showRoom =(sender_psid) => {
                 {
                   "type": "postback",
                   "title": "Family Room",
-                  "payload": "appointment:Family",
+                  "payload": "Appointment:Family",
                 }
               ],
           }
