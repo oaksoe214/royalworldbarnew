@@ -160,12 +160,13 @@ app.post('/appointment', async function(req,res){
   userInputs[user_id].date = req.body.date,
   userInputs[user_id].time = req.body.time,
   userInputs[user_id].message = req.body.message,
-  confirmAppointment(user_id);
+  saveRoomBooking(userInputs[user_id], sender_psid);
+  //confirmAppointment(user_id);
 
-  db.collection('roombookings').doc(req.body.doc_id)
-  .update(data).then(()=>{
-    res.redirect('/admin/roombookings');
-  }).catch((err)=>console.log('ERROR:',error));
+  // db.collection('roombookings').doc(req.body.doc_id)
+  // .update(data).then(()=>{
+  //   res.redirect('/admin/roombookings');
+  // }).catch((err)=>console.log('ERROR:',error));
 
 
 });
