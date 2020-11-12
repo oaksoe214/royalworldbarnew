@@ -691,6 +691,7 @@ function webviewappointment(sender_psid){
                 "type": "web_url",
                 "title": "appointment",
                 "url":APP_URL+"appointment/"+sender_psid,
+                 "webview_height_ratio": "full",
                 "messenger_extensions": true,          
               },
               
