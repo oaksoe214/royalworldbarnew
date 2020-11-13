@@ -523,6 +523,9 @@ const handleMessage = (sender_psid, received_message) => {
       case "appointment":
           appointment(sender_psid);
         break;
+      case "food":
+          showFood(sender_psid);
+        break;
       case "text":
         textReply(sender_psid);
         break;
@@ -879,7 +882,7 @@ const showFood =(sender_psid) => {
                 {
                   "type": "postback",
                   "title": "Chicken Wing",
-                  "payload": "Promotion:Chicken Wing",
+                  "payload": "Food:Chicken Wing",
                 }
               ],
           },
@@ -891,7 +894,7 @@ const showFood =(sender_psid) => {
                 {
                   "type": "postback",
                   "title": "Pork-chops",
-                  "payload": "Promotion:Pork-chops",
+                  "payload": "Food:Pork-chops",
                 }
               ],
           },
@@ -903,7 +906,7 @@ const showFood =(sender_psid) => {
                 {
                   "type": "postback",
                   "title": "Marinated Steak",
-                  "payload": "Promotion:Marinated Steak",
+                  "payload": "Food:Marinated Steak",
                 }
               ],
           }
