@@ -782,7 +782,7 @@ const appointment =(sender_psid) => {
 }
 
 const savedroom =(sender_psid) => {
-  let response2 = {
+  let response = {
     "quick_replies":[
             {
               "content_type":"text",
@@ -799,10 +799,7 @@ const savedroom =(sender_psid) => {
             }
     ]
   };
-  callSend(sender_psid, response1).then(()=>{
-    return callSend(sender_psid, response2);
-  });
-
+    return callSend(sender_psid, response1);
 }
 
 const showRoom =(sender_psid) => {
