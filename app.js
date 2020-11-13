@@ -528,6 +528,9 @@ const handleMessage = (sender_psid, received_message) => {
       case "appointment":
           appointment(sender_psid);
         break;
+      case "savedroom":
+          showFood(sender_psid);
+        break;  
       case "food":
           showFood(sender_psid);
         break;
