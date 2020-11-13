@@ -608,16 +608,22 @@ const handlePostback = (sender_psid, received_postback) => {
     userInputs[user_id].room=room_type;
     console.log('TEST',userInputs);
     //firstOrFollowup(sender_psid);
-    webviewappointment(sender_psid);
     callSend(sender_psid, response);
+    webviewappointment(sender_psid);
   }
   else if(payload.startsWith("Promotion:")){
     let promo=payload.slice(10);
     console.log("SELECTED Promotion IS: ", promo);
     userInputs[user_id].promethod=promo;
     console.log('TEST',userInputs);
-    //firstOrFollowup(sender_psid);
     callSend(sender_psid, response);
+  }else if(payload.startsWith("Food:")){
+    let fd=payload.slice(5);
+    console.log("SELECTED Category IS: ", fd);
+    userInputs[user_id].promethod=fd;
+    console.log('TEST',userInputs);
+    callSend(sender_psid, response);
+    showFood(sender_psid);
   }
   else{
       switch(payload) {        
