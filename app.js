@@ -443,6 +443,11 @@ function handleQuickReply(sender_psid, received_message) {
     userInputs[user_id].appointment=pro;
     showPromotion(sender_psid);
 
+  }else if(received_message.startsWith("food:")){
+    let f=received_message.slice(5);
+    userInputs[user_id].appointment=f;
+    showFood(sender_psid);
+
   }else{
     switch(received_message) {     
         case "on":
