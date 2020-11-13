@@ -525,7 +525,7 @@ const handleMessage = (sender_psid, received_message) => {
       case "mingalarbar":
           greetInMyanmar(sender_psid);
         break;
-      case "appointment":
+      case "booking":
           appointment(sender_psid);
         break;
       case "food":
