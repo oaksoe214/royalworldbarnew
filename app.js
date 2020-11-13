@@ -771,6 +771,30 @@ const appointment =(sender_psid) => {
 
 }
 
+const savedroom =(sender_psid) => {
+  let response2 = {
+    "quick_replies":[
+            {
+              "content_type":"text",
+              "title":"Food",
+              "payload":"category:Food",              
+            },{
+              "content_type":"text",
+              "title":"Done",
+              "payload":"category:Done",             
+            },{
+              "content_type":"text",
+              "title":"Cancel",
+              "payload":"category:Cancel",             
+            }
+    ]
+  };
+  callSend(sender_psid, response1).then(()=>{
+    return callSend(sender_psid, response2);
+  });
+
+}
+
 const showRoom =(sender_psid) => {
   let response = {
       "attachment": {
