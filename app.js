@@ -528,9 +528,6 @@ const handleMessage = (sender_psid, received_message) => {
       case "appointment":
           appointment(sender_psid);
         break;
-      case "savedroom":
-          savedroom(sender_psid);
-        break;  
       case "food":
           showFood(sender_psid);
         break;
@@ -610,20 +607,13 @@ const handlePostback = (sender_psid, received_postback) => {
     //firstOrFollowup(sender_psid);
     webviewappointment(sender_psid);
     callSend(sender_psid, response);
-    
   }
   else if(payload.startsWith("Promotion:")){
     let promo=payload.slice(10);
     console.log("SELECTED Promotion IS: ", promo);
     userInputs[user_id].promethod=promo;
     console.log('TEST',userInputs);
-    callSend(sender_psid, response);
-  }else if(payload.startsWith("Food:")){
-    let fd=payload.slice(5);
-    console.log("SELECTED Category IS: ", fd);
-    userInputs[user_id].promethod=fd;
-    console.log('TEST',userInputs);
-    showFood(sender_psid);
+    //firstOrFollowup(sender_psid);
     callSend(sender_psid, response);
   }
   else{
@@ -781,26 +771,7 @@ const appointment =(sender_psid) => {
 
 }
 
-const savedroom =(sender_psid) => {
-  let response = {
-    "quick_replies":[
-            {
-              "content_type":"text",
-              "title":"Food",
-              "payload":"category:Food",              
-            },{
-              "content_type":"text",
-              "title":"Done",
-              "payload":"category:Done",             
-            },{
-              "content_type":"text",
-              "title":"Cancel",
-              "payload":"category:Cancel",             
-            }
-    ]
-  };
-    return callSend(sender_psid, response);
-}
+
 
 const showRoom =(sender_psid) => {
   let response = {
