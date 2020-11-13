@@ -161,25 +161,26 @@ app.post('/appointment', async function(req,res){
   userInputs[user_id].date = req.body.date;
   userInputs[user_id].time = req.body.time;
   userInputs[user_id].message = req.body.message;
-  console.log('ready data to save!');
-  // saveRoomBooking(userInputs[user_id], sender_psid);
-  // console.log('saved data');
+  //console.log('ready data to save!');
+  saveRoomBooking(userInputs[user_id], sender_psid);
+  console.log('saved data:', sender_psid);
 
-   db.collection('roombookings').add({
-            type: type,
-            name: name,
-            guest: guest,
-            phone: phone,
-            date: date,
-            time: time,
-            message: message
-            }).then(success => {   
-               console.log("DATA SAVED")
-               thankyouReply(type, name, date);    
-            }).catch(error => {
-              console.log(error);
-            });
+   // db.collection('roombookings').add({
+   //          type: type,
+   //          name: name,
+   //          guest: guest,
+   //          phone: phone,
+   //          date: date,
+   //          time: time,
+   //          message: message
+   //          }).then(success => {   
+   //             console.log("DATA SAVED")
+   //             thankyouReply(type, name, date);    
+   //          }).catch(error => {
+   //            console.log(error);
+   //          });
 
+   showFood(sender_psid);
 });
 
 app.get('/admin/roombookings', async function(req,res){
@@ -863,6 +864,58 @@ const showPromotion =(sender_psid) => {
   callSend(sender_psid, response);
 
 }
+
+const showFood =(sender_psid) => {
+  let response = {
+      "attachment": {
+        "type": "template",
+        "payload": {
+          "template_type": "generic",
+          "elements": [{
+            "title": "Chicken Wing",
+            "subtitle": "4 pieces",
+            "image_url":"https://cravinghomecooked.com/wp-content/uploads/2019/08/crispy-fried-chicken-1-650x813.jpg.webp",
+            "buttons": [
+                {
+                  "type": "postback",
+                  "title": "Chicken Wing",
+                  "payload": "Promotion:Chicken Wing",
+                }
+              ],
+          },
+          {
+            "title": "Pork-chops",
+            "subtitle": "Hot and Spicy",
+            "image_url":"https://cravinghomecooked.com/wp-content/uploads/2019/03/oven-baked-pork-chops-1-5-650x975.jpg.webp",                       
+            "buttons": [
+                {
+                  "type": "postback",
+                  "title": "Pork-chops",
+                  "payload": "Promotion:Pork-chops",
+                }
+              ],
+          },
+          {
+            "title": "Marinated Top Round Steak",
+            "subtitle": "with Fresh Vegetable",
+            "image_url":"https://www.thespruceeats.com/thmb/hl4lkmdLO7tj1eDCsGbakfk97Co=/3088x2055/filters:fill(auto,1)/marinated-top-round-steak-3060302-hero-02-ed071d5d7e584bea82857112aa734a94.jpg",                       
+            "buttons": [
+                {
+                  "type": "postback",
+                  "title": "Marinated Steak",
+                  "payload": "Promotion:Marinated Steak",
+                }
+              ],
+          }
+
+          ]
+        }
+      }
+    }
+  callSend(sender_psid, response);
+
+}
+
 
 // const firstOrFollowup =(sender_psid) => {  
 //   let response = {
