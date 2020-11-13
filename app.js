@@ -153,6 +153,7 @@ app.get('/appointment/:sender_id',function(req,res){
     res.render('appointment.ejs',{title:"Hello!! from WebViewappointment", sender_id:sender_id});
 });
 app.post('/appointment', async function(req,res){
+  // console.log('REQ:', req.body);
   userInputs[user_id].type = req.body.type;
   userInputs[user_id].name = req.body.name;
   userInputs[user_id].guest = parseInt(req.body.guest);
@@ -161,16 +162,23 @@ app.post('/appointment', async function(req,res){
   userInputs[user_id].time = req.body.time;
   userInputs[user_id].message = req.body.message;
   console.log('ready data to save!');
-  saveRoomBooking(userInputs[user_id], sender_psid);
-  console.log('saved data');
-  
-  //confirmAppointment(user_id);
+  // saveRoomBooking(userInputs[user_id], sender_psid);
+  // console.log('saved data');
 
-  // db.collection('roombookings').doc(req.body.doc_id)
-  // .update(data).then(()=>{
-  //   res.redirect('/admin/roombookings');
-  // }).catch((err)=>console.log('ERROR:',error));
-
+   db.collection('roombookings').add({
+            type: type,
+            name: name,
+            guest: guest,
+            phone: phone,
+            date: date,
+            time: time,
+            message: message
+            }).then(success => {   
+               console.log("DATA SAVED")
+               thankyouReply(type, name, date);    
+            }).catch(error => {
+              console.log(error);
+            });
 
 });
 
