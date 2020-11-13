@@ -799,7 +799,7 @@ const savedroom =(sender_psid) => {
             }
     ]
   };
-    return callSend(sender_psid, response1);
+    return callSend(sender_psid, response);
 }
 
 const showRoom =(sender_psid) => {
