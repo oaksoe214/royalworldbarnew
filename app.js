@@ -145,44 +145,6 @@ app.post('/test',function(req,res){
     callSend(sender_psid, response);
 });
 
-// app.get('/appointment', async function(req,res){
-//   res.render('appointment.ejs');
-// });
-app.get('/appointment/:sender_id',function(req,res){
-    const sender_id = req.params.sender_id;
-    res.render('appointment.ejs',{title:"Hello!! from WebViewappointment", sender_id:sender_id});
-});
-app.post('/appointment', async function(req,res){
-  // console.log('REQ:', req.body);
-  userInputs[user_id].type = req.body.type;
-  userInputs[user_id].name = req.body.name;
-  userInputs[user_id].guest = parseInt(req.body.guest);
-  userInputs[user_id].phone = req.body.phone;
-  userInputs[user_id].date = req.body.date;
-  userInputs[user_id].time = req.body.time;
-  userInputs[user_id].message = req.body.message;
-  //console.log('ready data to save!');
-  saveRoomBooking(userInputs[user_id], sender_psid);
-  console.log('saved data:', sender_psid);
-
-   // db.collection('roombookings').add({
-   //          type: type,
-   //          name: name,
-   //          guest: guest,
-   //          phone: phone,
-   //          date: date,
-   //          time: time,
-   //          message: message
-   //          }).then(success => {   
-   //             console.log("DATA SAVED")
-   //             thankyouReply(type, name, date);    
-   //          }).catch(error => {
-   //            console.log(error);
-   //          });
-
-   showFood(sender_psid);
-});
-
 app.get('/admin/roombookings', async function(req,res){
   const roombookingsRef = db.collection('roombookings');
   const snapshot = await roombookingsRef.get();
@@ -428,25 +390,15 @@ function handleQuickReply(sender_psid, received_message) {
 
   received_message=received_message.toLowerCase();
 
-  // if(received_message.startsWith("visit:")){
-  //   let visit=received_message.slice(6);
-  //   userInputs[user_id].visit=visit;
-  //   current_question='q1';
-  //   botQuestions(current_question, sender_psid);
-  // }else 
-  if(received_message.startsWith("appoint:")){
-    let appoint=received_message.slice(8);
-    userInputs[user_id].appointment=appoint;
+  if(received_message.startsWith("visit:")){
+    let visit=received_message.slice(6);
+    userInputs[user_id].visit=visit;
+    current_question='q1';
+    botQuestions(current_question, sender_psid);
+  }else if(received_message.startsWith("roomfood:")){
+    let r_f=received_message.slice(9);
+    userInputs[user_id].appointment=r_f;
     showRoom(sender_psid);
-  }else if(received_message.startsWith("promotion:")){
-    let pro=received_message.slice(10);
-    userInputs[user_id].appointment=pro;
-    showPromotion(sender_psid);
-
-  }else if(received_message.startsWith("food:")){
-    let f=received_message.slice(5);
-    userInputs[user_id].appointment=f;
-    showFood(sender_psid);
 
   }else{
     switch(received_message) {     
@@ -525,11 +477,8 @@ const handleMessage = (sender_psid, received_message) => {
       case "mingalarbar":
           greetInMyanmar(sender_psid);
         break;
-      case "booking":
+      case "appointment":
           appointment(sender_psid);
-        break;
-      case "food":
-          showFood(sender_psid);
         break;
       case "text":
         textReply(sender_psid);
@@ -599,22 +548,12 @@ const handlePostback = (sender_psid, received_postback) => {
   let payload = received_postback.payload;
   console.log('BUTTON PAYLOAD', payload);
   
-  if(payload.startsWith("Appointment:")){
-    let room_type=payload.slice(12);
+  if(payload.startsWith("Room:")){
+    let room_type=payload.slice(5);
     console.log("SELECTED ROOM IS: ", room_type);
     userInputs[user_id].room=room_type;
     console.log('TEST',userInputs);
-    //firstOrFollowup(sender_psid);
-    webviewappointment(sender_psid);
-    callSend(sender_psid, response);
-  }
-  else if(payload.startsWith("Promotion:")){
-    let promo=payload.slice(10);
-    console.log("SELECTED Promotion IS: ", promo);
-    userInputs[user_id].promethod=promo;
-    console.log('TEST',userInputs);
-    //firstOrFollowup(sender_psid);
-    callSend(sender_psid, response);
+    firstOrFollowup(sender_psid);
   }
   else{
       switch(payload) {        
@@ -703,48 +642,6 @@ function webviewTest(sender_psid){
   callSendAPI(sender_psid, response);
 }
 
-function webviewappointment(sender_psid){
-  let response;
-  response = {
-      "attachment": {
-        "type": "template",
-        "payload": {
-          "template_type": "generic",
-          "elements": [{
-            "title": "Do you want to make appointment?",                       
-            "buttons": [              
-              {
-                "type": "web_url",
-                "title": "appointment",
-                "url":APP_URL+"appointment/"+sender_psid,
-                 "webview_height_ratio": "full",
-                "messenger_extensions": true,          
-              },
-              
-            ],
-          }]
-        }
-      }
-    }
-
-  // let response = {
-  //   "text": "Do you want to make appointment?",
-  //   "quick_replies":[
-  //           {
-  //             "content_type":"button",
-  //             "title":"Yes",
-  //             "url":APP_URL+"appointment/"+sender_psid,              
-  //           },{
-  //             "content_type":"button",
-  //             "title":"No",
-  //             "payload":"promotion:Promotion",             
-  //           }
-  //   ]
-  // }
-
-  callSendAPI(sender_psid, response);
-}
-
 
 /****************
 start room 
@@ -752,16 +649,16 @@ start room
 const appointment =(sender_psid) => {
   let response1 = {"text": "Welcome to Royal World Bar"};
   let response2 = {
-    "text": "How May I Help You?",
+    "text": "Please Select Room or Food",
     "quick_replies":[
             {
               "content_type":"text",
-              "title":"Appointment",
-              "payload":"appoint:Appointment",              
+              "title":"Room",
+              "payload":"roomfood:Room",              
             },{
               "content_type":"text",
-              "title":"Promotion",
-              "payload":"promotion:Promotion",             
+              "title":"Food",
+              "payload":"roomfood:Food",             
             }
     ]
   };
@@ -770,8 +667,6 @@ const appointment =(sender_psid) => {
   });
 
 }
-
-
 
 const showRoom =(sender_psid) => {
   let response = {
@@ -787,7 +682,7 @@ const showRoom =(sender_psid) => {
                 {
                   "type": "postback",
                   "title": "Normal Room",
-                  "payload": "Appointment:Normal",
+                  "payload": "Room:Normal Room",
                 }
               ],
           },
@@ -799,7 +694,7 @@ const showRoom =(sender_psid) => {
                 {
                   "type": "postback",
                   "title": "Medium Room",
-                  "payload": "Appointment:Medium",
+                  "payload": "Room:Medium Room",
                 }
               ],
           },
@@ -811,7 +706,7 @@ const showRoom =(sender_psid) => {
                 {
                   "type": "postback",
                   "title": "Family Room",
-                  "payload": "Appointment:Family",
+                  "payload": "Room:Family Room",
                 }
               ],
           }
@@ -824,133 +719,29 @@ const showRoom =(sender_psid) => {
 
 }
 
-const showPromotion =(sender_psid) => {
+const firstOrFollowup =(sender_psid) => {  
   let response = {
-      "attachment": {
-        "type": "template",
-        "payload": {
-          "template_type": "generic",
-          "elements": [{
-            "title": "Chicken Wing",
-            "subtitle": "4 pieces",
-            "image_url":"https://cravinghomecooked.com/wp-content/uploads/2019/08/crispy-fried-chicken-1-650x813.jpg.webp",
-            "buttons": [
-                {
-                  "type": "postback",
-                  "title": "Chicken Wing",
-                  "payload": "Promotion:Chicken Wing",
-                }
-              ],
-          },
-          {
-            "title": "Pork-chops",
-            "subtitle": "Hot and Spicy",
-            "image_url":"https://cravinghomecooked.com/wp-content/uploads/2019/03/oven-baked-pork-chops-1-5-650x975.jpg.webp",                       
-            "buttons": [
-                {
-                  "type": "postback",
-                  "title": "Pork-chops",
-                  "payload": "Promotion:Pork-chops",
-                }
-              ],
-          },
-          {
-            "title": "Marinated Top Round Steak",
-            "subtitle": "with Fresh Vegetable",
-            "image_url":"https://www.thespruceeats.com/thmb/hl4lkmdLO7tj1eDCsGbakfk97Co=/3088x2055/filters:fill(auto,1)/marinated-top-round-steak-3060302-hero-02-ed071d5d7e584bea82857112aa734a94.jpg",                       
-            "buttons": [
-                {
-                  "type": "postback",
-                  "title": "Marinated Steak",
-                  "payload": "Promotion:Marinated Steak",
-                }
-              ],
-          }
-
-          ]
-        }
-      }
-    }
+    "text": "First Time Visit or Follow Up?",
+    "quick_replies":[
+            {
+              "content_type":"text",
+              "title":"First Time",
+              "payload":"visit:first time",              
+            },{
+              "content_type":"text",
+              "title":"Follow Up",
+              "payload":"visit:follow up",             
+            }
+    ]
+  };
   callSend(sender_psid, response);
-
 }
-
-const showFood =(sender_psid) => {
-  let response = {
-      "attachment": {
-        "type": "template",
-        "payload": {
-          "template_type": "generic",
-          "elements": [{
-            "title": "Chicken Wing",
-            "subtitle": "4 pieces",
-            "image_url":"https://cravinghomecooked.com/wp-content/uploads/2019/08/crispy-fried-chicken-1-650x813.jpg.webp",
-            "buttons": [
-                {
-                  "type": "postback",
-                  "title": "Chicken Wing",
-                  "payload": "Food:Chicken Wing",
-                }
-              ],
-          },
-          {
-            "title": "Pork-chops",
-            "subtitle": "Hot and Spicy",
-            "image_url":"https://cravinghomecooked.com/wp-content/uploads/2019/03/oven-baked-pork-chops-1-5-650x975.jpg.webp",                       
-            "buttons": [
-                {
-                  "type": "postback",
-                  "title": "Pork-chops",
-                  "payload": "Food:Pork-chops",
-                }
-              ],
-          },
-          {
-            "title": "Marinated Top Round Steak",
-            "subtitle": "with Fresh Vegetable",
-            "image_url":"https://www.thespruceeats.com/thmb/hl4lkmdLO7tj1eDCsGbakfk97Co=/3088x2055/filters:fill(auto,1)/marinated-top-round-steak-3060302-hero-02-ed071d5d7e584bea82857112aa734a94.jpg",                       
-            "buttons": [
-                {
-                  "type": "postback",
-                  "title": "Marinated Steak",
-                  "payload": "Food:Marinated Steak",
-                }
-              ],
-          }
-
-          ]
-        }
-      }
-    }
-  callSend(sender_psid, response);
-
-}
-
-
-// const firstOrFollowup =(sender_psid) => {  
-//   let response = {
-//     "text": "First Time Visit or Follow Up?",
-//     "quick_replies":[
-//             {
-//               "content_type":"text",
-//               "title":"First Time",
-//               "payload":"visit:first time",              
-//             },{
-//               "content_type":"text",
-//               "title":"Follow Up",
-//               "payload":"visit:follow up",             
-//             }
-//     ]
-//   };
-//   callSend(sender_psid, response);
-// }
 
 const botQuestions = (current_question,sender_psid) => {
   if(current_question =='q1'){
     let response = {"text": bot_questions.q1};
   callSend(sender_psid, response);
-  }else 
-  if(current_question =='q2'){
+  }else if(current_question =='q2'){
     let response = {"text": bot_questions.q2};
   callSend(sender_psid, response);
   }else if(current_question =='q3'){
@@ -971,22 +762,14 @@ const botQuestions = (current_question,sender_psid) => {
 
 const confirmAppointment = (sender_psid) => {
   console.log('BOOKING INFO',userInputs);
-   // let Summary = "appointment:" + userInputs[user_id].appointment + "\u000A";
-   // Summary += "room:" + userInputs[user_id].room + "\u000A";
-   // Summary += "visit:" + userInputs[user_id].visit + "\u000A";
-   // Summary += "date:" + userInputs[user_id].date + "\u000A";
-   // Summary += "time:" + userInputs[user_id].time + "\u000A";
-   // Summary += "name:" + userInputs[user_id].name + "\u000A";
-   // Summary += "phone:" + userInputs[user_id].phone + "\u000A";
-   // Summary += "email:" + userInputs[user_id].email + "\u000A";
-   // Summary += "message:" + userInputs[user_id].message + "\u000A";
-
-   let Summary = "name:" + userInputs[user_id].name + "\u000A";
-   Summary += "type:" + userInputs[user_id].type + "\u000A";
-   Summary += "guest:" + userInputs[user_id].guest + "\u000A";
+   let Summary = "appointment:" + userInputs[user_id].appointment + "\u000A";
+   Summary += "room:" + userInputs[user_id].room + "\u000A";
+   Summary += "visit:" + userInputs[user_id].visit + "\u000A";
    Summary += "date:" + userInputs[user_id].date + "\u000A";
    Summary += "time:" + userInputs[user_id].time + "\u000A";
-   Summary += "type:" + userInputs[user_id].name + "\u000A";
+   Summary += "name:" + userInputs[user_id].name + "\u000A";
+   Summary += "phone:" + userInputs[user_id].phone + "\u000A";
+   Summary += "email:" + userInputs[user_id].email + "\u000A";
    Summary += "message:" + userInputs[user_id].message + "\u000A";
    
   let response1 = {"text": Summary};
