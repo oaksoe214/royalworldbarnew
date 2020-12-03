@@ -649,7 +649,7 @@ start room
 const appointment =(sender_psid) => {
   let response1 = {"text": "Welcome to Royal World Bar"};
   let response2 = {
-    "text": "Please Select Room or Food",
+    "text": "You can choose Room or Food",
     "quick_replies":[
             {
               "content_type":"text",
