@@ -193,6 +193,7 @@ app.post('/admin/updateroombooking', function(req,res){
     phone:req.body.phone,
     email:req.body.email,
     room:req.body.room,
+    appointment:req.body.appointment,
     visit:req.body.visit,
     date:req.body.date,
     time:req.body.time,
