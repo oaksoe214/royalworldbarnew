@@ -185,7 +185,7 @@ app.get('/admin/updateroombooking/:doc_id', async function(req,res){
   }
 });
 
-app.post('/admin/updateroombooking', function(req,res){
+app.post('/admin/updateroombooking', async function(req,res){
   console.log('REQ:', req.body);
   
   let data = {
@@ -199,12 +199,12 @@ app.post('/admin/updateroombooking', function(req,res){
     message:req.body.message,
     status:req.body.status,
     doc_id:req.body.doc_id,
-    ref:req.body.ref,
-    comment:req.body.comment
+    ref:req.body.ref
+    // comment:req.body.comment
   }
   
   db.collection('roombookings').doc(req.body.doc_id)
-  .update(data).then(()=>y{
+  .update(data).then(()=>{
     res.redirect('/admin/roombookings');
   }).catch((err)=>console.log('ERROR:',error));
 
@@ -649,7 +649,7 @@ start room
 const appointment =(sender_psid) => {
   let response1 = {"text": "Welcome to Royal World Bar"};
   let response2 = {
-    "text": "You can choose Room or Food",
+    "text": "Please Select Room or Food",
     "quick_replies":[
             {
               "content_type":"text",
