@@ -145,7 +145,6 @@ app.post('/test',function(req,res){
     callSend(sender_psid, response);
 });
 
-
 app.get('/admin/roombookings', async function(req,res){
   const roombookingsRef = db.collection('roombookings');
   const snapshot = await roombookingsRef.get();
@@ -205,7 +204,7 @@ app.post('/admin/updateroombooking', function(req,res){
   }
   
   db.collection('roombookings').doc(req.body.doc_id)
-  .update(data).then(()=>y{
+  .update(data).then(()=>{
     res.redirect('/admin/roombookings');
   }).catch((err)=>console.log('ERROR:',error));
 
