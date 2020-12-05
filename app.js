@@ -729,18 +729,18 @@ const booking =(sender_psid) => {
 }
 
 const booking2 =(sender_psid) => {
-  let response1 = {"text": "Welcome to Royal World Bar"};
+  let response1 = {"text": "You can also make Food Order"};
   let response2 = {
-    "text": "Please Select Room or Food",
+    "text": "Will you?",
     "quick_replies":[
             {
               "content_type":"text",
-              "title":"Room",
-              "payload":"roombooking:Room",              
+              "title":"Food",
+              "payload":"foodorder:Food",              
             },{
               "content_type":"text",
-              "title":"Food",
-              "payload":"foodorder:Food",             
+              "title":"Cancel",
+              "payload":"cancel",             
             }
     ]
   };
@@ -1008,19 +1008,20 @@ const saveRoomBooking = async (arg, sender_psid) =>{
       let response = {"text": text};
       callSend(sender_psid, response);
 
-      let response2 = {
-	    "text": "Do you want to make Food order?",
-	    "quick_replies":[
-	            {
-	              "content_type":"text",
-	              "title":"Food",
-	              "payload":"foodorder:Food",              
-	            },{
-	              "content_type":"text",
-	              "title":"Cancel",
-	              "payload":"off",             
-	            }
-	    ]}
+      booking2(sender_psid)
+     //  let response2 = {
+	    // "text": "Do you want to make Food order?",
+	    // "quick_replies":[
+	    //         {
+	    //           "content_type":"text",
+	    //           "title":"Food",
+	    //           "payload":"foodorder:Food",              
+	    //         },{
+	    //           "content_type":"text",
+	    //           "title":"Cancel",
+	    //           "payload":"off",             
+	    //         }
+	    // ]}
       
     }).catch((err)=>{
         console.log('Error', err);
