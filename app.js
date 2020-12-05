@@ -481,32 +481,33 @@ const handleMessage = (sender_psid, received_message) => {
     confirmAppointment(sender_psid);
   }
   ////////////////////////////
-  else if(current_question2 == 'q1'){
-    console.log('DATE ENTERED',received_message.text);
-    userInputs[user_id].date=received_message.text;
-    current_question2='q2';
-    botQuestions(current_question2,sender_psid);
-  }else if(current_question2 == 'q2'){
-    console.log('TIME ENTERED',received_message.text);
-    userInputs[user_id].time=received_message.text;
-    current_question2='q3';
-    botQuestions(current_question2,sender_psid);
-  }else if(current_question2 == 'q3'){
-    console.log('FULL NAME ENTERED',received_message.text);
-    userInputs[user_id].name=received_message.text;
-    current_question2='q4';
-    botQuestions(current_question2,sender_psid);
-  }else if(current_question2 == 'q4'){
-    console.log('PHONE ENTERED',received_message.text);
-    userInputs[user_id].phone=received_message.text;
-    current_question2='q5';
-    botQuestions(current_question2,sender_psid);
-  }else if(current_question2 == 'q5'){
-    console.log('EMAIL ENTERED',received_message.text);
-    userInputs[user_id].email=received_message.text;
-    current_question2='q6';
-    botQuestions(current_question2,sender_psid);
-  }else if(current_question2 == 'q6'){
+  // else if(current_question2 == 'q1'){
+  //   console.log('DATE ENTERED',received_message.text);
+  //   userInputs[user_id].date=received_message.text;
+  //   current_question2='q2';
+  //   botQuestions(current_question2,sender_psid);
+  // }else if(current_question2 == 'q2'){
+  //   console.log('TIME ENTERED',received_message.text);
+  //   userInputs[user_id].time=received_message.text;
+  //   current_question2='q3';
+  //   botQuestions(current_question2,sender_psid);
+  // }else if(current_question2 == 'q3'){
+  //   console.log('FULL NAME ENTERED',received_message.text);
+  //   userInputs[user_id].name=received_message.text;
+  //   current_question2='q4';
+  //   botQuestions(current_question2,sender_psid);
+  // }else if(current_question2 == 'q4'){
+  //   console.log('PHONE ENTERED',received_message.text);
+  //   userInputs[user_id].phone=received_message.text;
+  //   current_question2='q5';
+  //   botQuestions(current_question2,sender_psid);
+  // }else if(current_question2 == 'q5'){
+  //   console.log('EMAIL ENTERED',received_message.text);
+  //   userInputs[user_id].email=received_message.text;
+  //   current_question2='q6';
+  //   botQuestions(current_question2,sender_psid);
+  // }
+  else if(current_question2 == 'q6'){
     console.log('MESSAGE ENTERED',received_message.text);
     userInputs[user_id].message=received_message.text;
     current_question2='';
@@ -893,25 +894,26 @@ const botQuestions = (current_question,sender_psid) => {
 }
 
 const botQuestions2 = (current_question2,sender_psid) => {
-  if(current_question2 =='q1'){
-    let response = {"text": bot_questions.q1};
-  callSend(sender_psid, response);
-  }else if(current_question2 =='q2'){
-    let response = {"text": bot_questions.q2};
-  callSend(sender_psid, response);
-  }else if(current_question2 =='q3'){
-    let response = {"text": bot_questions.q3};
-  callSend(sender_psid, response);
-  }else if(current_question2 =='q4'){
-    let response = {"text": bot_questions.q4};
-  callSend(sender_psid, response);
-  }else if(current_question2 =='q5'){
-    let response = {"text": bot_questions.q5};
-  callSend(sender_psid, response);
-  }else if(current_question2 =='q6'){
+  if(current_question2 =='q6'){
     let response = {"text": bot_questions.q6};
   callSend(sender_psid, response);
   }
+  // else if(current_question2 =='q2'){
+  //   let response = {"text": bot_questions.q2};
+  // callSend(sender_psid, response);
+  // }else if(current_question2 =='q3'){
+  //   let response = {"text": bot_questions.q3};
+  // callSend(sender_psid, response);
+  // }else if(current_question2 =='q4'){
+  //   let response = {"text": bot_questions.q4};
+  // callSend(sender_psid, response);
+  // }else if(current_question2 =='q5'){
+  //   let response = {"text": bot_questions.q5};
+  // callSend(sender_psid, response);
+  // }else if(current_question2 =='q6'){
+  //   let response = {"text": bot_questions.q6};
+  // callSend(sender_psid, response);
+  // }
 
 }
 
@@ -1005,7 +1007,21 @@ const saveRoomBooking = async (arg, sender_psid) =>{
       text +="Your Booking reference number is:" + data.ref;
       let response = {"text": text};
       callSend(sender_psid, response);
-      booking2(sender_psid);
+
+      let response2 = {
+	    "text": "Do you want to make Food order?",
+	    "quick_replies":[
+	            {
+	              "content_type":"text",
+	              "title":"Food",
+	              "payload":"foodorder:Food",              
+	            },{
+	              "content_type":"text",
+	              "title":"Cancel",
+	              "payload":"off",             
+	            }
+	    ]}
+      
     }).catch((err)=>{
         console.log('Error', err);
     });
