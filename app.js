@@ -33,6 +33,7 @@ const bot_questions ={
 }
 
 let current_question = '';
+let current_question2 = '';
 
 let user_id = '';
 
@@ -418,7 +419,15 @@ function handleQuickReply(sender_psid, received_message) {
           break;   
         case "confirm-roombooking":
             saveRoomBooking(userInputs[user_id], sender_psid);
-          break;             
+          break;
+        case "order-food":
+            showFood(sender_psid);
+          break;
+
+        case "confirm-orderfood":
+            saveFoodOrdering(userInputs[user_id], sender_psid);
+          break;
+
         default:
             defaultReply(sender_psid);
   } 
@@ -471,6 +480,39 @@ const handleMessage = (sender_psid, received_message) => {
 
     confirmAppointment(sender_psid);
   }
+  ////////////////////////////
+  else if(current_question2 == 'q1'){
+    console.log('DATE ENTERED',received_message.text);
+    userInputs[user_id].date=received_message.text;
+    current_question2='q2';
+    botQuestions(current_question2,sender_psid);
+  }else if(current_question2 == 'q2'){
+    console.log('TIME ENTERED',received_message.text);
+    userInputs[user_id].time=received_message.text;
+    current_question2='q3';
+    botQuestions(current_question2,sender_psid);
+  }else if(current_question2 == 'q3'){
+    console.log('FULL NAME ENTERED',received_message.text);
+    userInputs[user_id].name=received_message.text;
+    current_question2='q4';
+    botQuestions(current_question2,sender_psid);
+  }else if(current_question2 == 'q4'){
+    console.log('PHONE ENTERED',received_message.text);
+    userInputs[user_id].phone=received_message.text;
+    current_question2='q5';
+    botQuestions(current_question2,sender_psid);
+  }else if(current_question2 == 'q5'){
+    console.log('EMAIL ENTERED',received_message.text);
+    userInputs[user_id].email=received_message.text;
+    current_question2='q6';
+    botQuestions(current_question2,sender_psid);
+  }else if(current_question2 == 'q6'){
+    console.log('MESSAGE ENTERED',received_message.text);
+    userInputs[user_id].message=received_message.text;
+    current_question2='';
+
+    confirmFoodOrder(sender_psid);
+  }
 
   else {
       
@@ -486,7 +528,7 @@ const handleMessage = (sender_psid, received_message) => {
           greetInMyanmar(sender_psid);
         break;
       case "booking":
-          appointment(sender_psid);
+          booking(sender_psid);
         break;
       case "text":
         textReply(sender_psid);
@@ -570,7 +612,7 @@ const handlePostback = (sender_psid, received_postback) => {
     console.log('TEST',userInputs);
     // firstOrFollowup(sender_psid);
     current_question='q1';
-    botQuestions(current_question, sender_psid);
+    botQuestions2(current_question, sender_psid);
   }
   else{
       switch(payload) {        
@@ -663,7 +705,7 @@ function webviewTest(sender_psid){
 /****************
 start room 
 ****************/
-const appointment =(sender_psid) => {
+const booking =(sender_psid) => {
   let response1 = {"text": "Welcome to Royal World Bar"};
   let response2 = {
     "text": "Please Select Room or Food",
@@ -828,6 +870,29 @@ const botQuestions = (current_question,sender_psid) => {
 
 }
 
+const botQuestions2 = (current_question2,sender_psid) => {
+  if(current_question2 =='q1'){
+    let response = {"text": bot_questions.q1};
+  callSend(sender_psid, response);
+  }else if(current_question2 =='q2'){
+    let response = {"text": bot_questions.q2};
+  callSend(sender_psid, response);
+  }else if(current_question2 =='q3'){
+    let response = {"text": bot_questions.q3};
+  callSend(sender_psid, response);
+  }else if(current_question2 =='q4'){
+    let response = {"text": bot_questions.q4};
+  callSend(sender_psid, response);
+  }else if(current_question2 =='q5'){
+    let response = {"text": bot_questions.q5};
+  callSend(sender_psid, response);
+  }else if(current_question2 =='q6'){
+    let response = {"text": bot_questions.q6};
+  callSend(sender_psid, response);
+  }
+
+}
+
 const confirmAppointment = (sender_psid) => {
   console.log('BOOKING INFO',userInputs);
    let Summary = "appointment:" + userInputs[user_id].appointment + "\u000A";
@@ -852,8 +917,38 @@ const confirmAppointment = (sender_psid) => {
               "payload":"confirm-roombooking",              
             },{
               "content_type":"text",
-              "title":"Cancel",
-              "payload":"off",             
+              "title":"order-food",
+              "payload":"order-food",             
+            }
+    ]
+  };
+  callSend(sender_psid, response1).then(() => {
+    return callSend(sender_psid, response2);
+  });
+
+  }
+
+ const confirmFoodOrder = (sender_psid) => {
+  console.log('FOOD ORDER INFO',userInputs);
+   let Summary = "foodorder:" + userInputs[user_id].foodorder + "\u000A";
+   Summary += "food:" + userInputs[user_id].food + "\u000A";
+   Summary += "date:" + userInputs[user_id].date + "\u000A";
+   Summary += "time:" + userInputs[user_id].time + "\u000A";
+   Summary += "name:" + userInputs[user_id].name + "\u000A";
+   Summary += "phone:" + userInputs[user_id].phone + "\u000A";
+   Summary += "email:" + userInputs[user_id].email + "\u000A";
+   Summary += "message:" + userInputs[user_id].message + "\u000A";
+   
+  let response1 = {"text": Summary};
+
+
+  let response2 = {
+    "text": "Select your reply",
+    "quick_replies":[
+            {
+              "content_type":"text",
+              "title":"Confirm",
+              "payload":"confirm-orderfood",              
             }
     ]
   };
@@ -869,9 +964,25 @@ const saveRoomBooking = async (arg, sender_psid) =>{
   data.status = "pending";
   db.collection('roombookings').add(data).then((success)=>{
       console.log("SAVED", success);
-      let text = "Thank you. We have received your appointment."+ "\u000A";
+      let text = "Thank you. We have received your room booking."+ "\u000A";
       text += "We will call you very soon to confirm"+ "\u000A";
       text +="Your Booking reference number is:" + data.ref;
+      let response = {"text": text};
+      callSend(sender_psid, response);
+    }).catch((err)=>{
+        console.log('Error', err);
+    });
+  }
+
+  const saveFoodOrdering = async (arg, sender_psid) =>{
+  let data=arg;
+  data.ref= generateRandom(6);
+  data.status = "pending";
+  db.collection('foodorderings').add(data).then((success)=>{
+      console.log("SAVED", success);
+      let text = "Thank you. We have received your food order."+ "\u000A";
+      text += "We will call you very soon to confirm"+ "\u000A";
+      text +="Your Food Order reference number is:" + data.ref;
       let response = {"text": text};
       callSend(sender_psid, response);
     }).catch((err)=>{
