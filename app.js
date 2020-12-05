@@ -1136,8 +1136,7 @@ const saveRoomBooking = async (arg, sender_psid) =>{
 
   const saveFoodOrdering = async (arg, sender_psid) =>{
   let data=arg;
-  //data.ref= generateRandom(6);
-  data.ref= data.ref;
+  data.ref= generateRandom(6);
   data.status = "pending";
   db.collection('foodorderings').add(data).then((success)=>{
       console.log("SAVED", success);
