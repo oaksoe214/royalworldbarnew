@@ -727,6 +727,28 @@ const booking =(sender_psid) => {
 
 }
 
+const booking2 =(sender_psid) => {
+  let response1 = {"text": "Welcome to Royal World Bar"};
+  let response2 = {
+    "text": "Please Select Room or Food",
+    "quick_replies":[
+            {
+              "content_type":"text",
+              "title":"Room",
+              "payload":"roombooking:Room",              
+            },{
+              "content_type":"text",
+              "title":"Food",
+              "payload":"foodorder:Food",             
+            }
+    ]
+  };
+  callSend(sender_psid, response1).then(()=>{
+    return callSend(sender_psid, response2);
+  });
+
+}
+
 const showRoom =(sender_psid) => {
   let response = {
       "attachment": {
@@ -908,6 +930,20 @@ const confirmAppointment = (sender_psid) => {
   let response1 = {"text": Summary};
 
 
+  // let response2 = {
+  //   "text": "Select your reply",
+  //   "quick_replies":[
+  //           {
+  //             "content_type":"text",
+  //             "title":"Confirm",
+  //             "payload":"confirm-roombooking",              
+  //           },{
+  //             "content_type":"text",
+  //             "title":"order-food",
+  //             "payload":"order-food",             
+  //           }
+  //   ]
+  // };
   let response2 = {
     "text": "Select your reply",
     "quick_replies":[
@@ -917,8 +953,8 @@ const confirmAppointment = (sender_psid) => {
               "payload":"confirm-roombooking",              
             },{
               "content_type":"text",
-              "title":"order-food",
-              "payload":"order-food",             
+              "title":"cancel",
+              "payload":"off",             
             }
     ]
   };
@@ -972,6 +1008,8 @@ const saveRoomBooking = async (arg, sender_psid) =>{
     }).catch((err)=>{
         console.log('Error', err);
     });
+
+	booking2(sender_psid);
   }
 
   const saveFoodOrdering = async (arg, sender_psid) =>{
