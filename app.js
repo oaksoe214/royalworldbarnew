@@ -611,8 +611,8 @@ const handlePostback = (sender_psid, received_postback) => {
     userInputs[user_id].food=food_type;
     console.log('TEST',userInputs);
     // firstOrFollowup(sender_psid);
-    current_question='q1';
-    botQuestions2(current_question, sender_psid);
+    current_question2='q1';
+    botQuestions2(current_question2, sender_psid);
   }
   else{
       switch(payload) {        
