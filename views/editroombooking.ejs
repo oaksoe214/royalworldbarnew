@@ -282,30 +282,30 @@
   <form id="form" method="post" action="../updateroombooking">
   <div class="form-group">
     <label for="name">Name</label>
-    <input type="text" class="form-control" name="name"  class="textbox" value="<%= data.name %>">    
+    <input type="text" class="form-control" name="name" class="textbox" value="<%= data.name %>">    
   </div>
    <div class="form-group">
     <label for="name">Phone</label>
-    <input type="text" class="form-control" name="phone" class="textbox" value="<%= data.phone %>">    
+    <input type="text" class="form-control" name="phone" value="<%= data.phone %>">    
   </div>
 
   <div class="form-group">
     <label for="email">Email</label>
-    <input type="email" class="form-control" name="email" class="textbox" value="<%= data.email %>">
+    <input type="email" class="form-control" name="email" value="<%= data.email %>">
   </div> 
   <div class="form-group">
     <label for="name">Booking</label>
-    <input type="text" class="form-control" name="appointment" class="textbox" value="<%= data.appointment %>">    
+    <input type="text" class="form-control" name="appointment" value="<%= data.appointment %>">    
   </div>
    <div class="form-group">
     <label for="name">Visit:</label>
-    <input type="radio" name="visit" class="textbox" value="first time" 
+    <input type="radio" name="visit" value="first time" 
     <%if(data.visit =="first time"){%>
       <%="checked"%>
     <%}%> 
     >
       <label for="name">First Time</label>
-      <input type="radio" name="visit" class="textbox" value="follow up"  
+      <input type="radio" name="visit" value="follow up"  
       <%if(data.visit =="follow up"){%>
       <%="checked"%>
       <%}%> 
@@ -314,20 +314,20 @@
   </div>
   <div class="form-group">
     <label for="name">Room</label>
-    <input type="text" class="form-control" class="textbox" name="room" value="<%= data.room %>">    
+    <input type="text" class="form-control" name="room" value="<%= data.room %>">    
   </div>
   <div class="form-group">
     <label for="name">Date</label>
-    <input type="text" class="form-control" class="textbox" name="date" value="<%= data.date %>">    
+    <input type="text" class="form-control" name="date" value="<%= data.date %>">    
   </div>
 
    <div class="form-group">
     <label for="name">Time</label>
-    <input type="text" class="form-control" class="textbox" name="time" value="<%= data.time %>">    
+    <input type="text" class="form-control" name="time" value="<%= data.time %>">    
   </div>
   <div class="form-group">
     <label for="name">Message</label>
-    <textarea class="form-control" name="message" class="textbox" rows="4" cols="50"><%= data.message %></textarea>   
+    <textarea class="form-control" name="message" rows="4" cols="50"><%= data.message %></textarea>   
   </div>
   <div class="form-group">
     <label for="name">Status:</label>
@@ -351,7 +351,7 @@
 
   <input type="hidden"  name="doc_id" value="<%= data.doc_id %>">
   <input type="hidden"  name="ref" value="<%= data.ref %>">
-  <input type="submit" value="Submit"> 
+  <input type="submit" value="Submit" class="btn"> 
   </form>
   </div>
 
