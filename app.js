@@ -968,7 +968,8 @@ const confirmAppointment = (sender_psid) => {
 
  const confirmFoodOrder = (sender_psid) => {
   console.log('FOOD ORDER INFO',userInputs);
-   let Summary = "foodorder:" + userInputs[user_id].foodorder + "\u000A";
+   let 
+   //Summary = "foodorder:" + userInputs[user_id].foodorder + "\u000A";
    // Summary += "food:" + userInputs[user_id].food + "\u000A";
    // Summary += "date:" + userInputs[user_id].date + "\u000A";
    // Summary += "time:" + userInputs[user_id].time + "\u000A";
