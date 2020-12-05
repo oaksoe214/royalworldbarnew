@@ -263,7 +263,7 @@ app.post('/admin/updatefoodordering', function(req,res){
   
   let data = {
   time:req.body.time,
-    //food:req.body.food,
+    food:req.body.food,
     name:req.body.name,
     email:req.body.email,
     ref:req.body.ref,
@@ -271,7 +271,7 @@ app.post('/admin/updatefoodordering', function(req,res){
     message:req.body.message,
     status:req.body.status,
     phone:req.body.phone,    
-    foodorder:req.body.foodorder,
+    //foodorder:req.body.foodorder,
     doc_id:req.body.doc_id,
     comment:req.body.comment   
   }
