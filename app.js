@@ -405,7 +405,7 @@ function handleQuickReply(sender_psid, received_message) {
     showRoom(sender_psid);
   }else if(received_message.startsWith("foodorder:")){
     let r_f=received_message.slice(10);
-    userInputs[user_id].appointment=r_f;
+    userInputs[user_id].order=r_f;
     showFood(sender_psid);
 
   }
@@ -968,19 +968,17 @@ const confirmAppointment = (sender_psid) => {
 
  const confirmFoodOrder = (sender_psid) => {
   console.log('FOOD ORDER INFO',userInputs);
-   // let Summary = "foodorder:" + userInputs[user_id].foodorder + "\u000A";
-   // Summary += "food:" + userInputs[user_id].food + "\u000A";
-   // Summary += "date:" + userInputs[user_id].date + "\u000A";
-   // Summary += "time:" + userInputs[user_id].time + "\u000A";
-   // Summary += "name:" + userInputs[user_id].name + "\u000A";
-   // Summary += "phone:" + userInputs[user_id].phone + "\u000A";
-   // Summary += "email:" + userInputs[user_id].email + "\u000A";
-   // Summary += "message:" + userInputs[user_id].message + "\u000A";
+    let Summary = "foodorder:" + userInputs[user_id].order + "\u000A";
+    Summary += "food:" + userInputs[user_id].food + "\u000A";
+   Summary += "date:" + userInputs[user_id].date + "\u000A";
+   Summary += "time:" + userInputs[user_id].time + "\u000A";
+   Summary += "name:" + userInputs[user_id].name + "\u000A";
+   Summary += "phone:" + userInputs[user_id].phone + "\u000A";
+   Summary += "email:" + userInputs[user_id].email + "\u000A";
+   Summary += "message:" + userInputs[user_id].message + "\u000A";
    
-  // let response1 = {"text": Summary};
-
-
-  let response2 = {
+  let response1 = {"text": Summary};
+  let response3 = {
     "text": "Select your reply",
     "quick_replies":[
             {
@@ -992,7 +990,7 @@ const confirmAppointment = (sender_psid) => {
   };
   // callSend(sender_psid, response2).then(() => {
   //   return callSend(sender_psid, response2);
-  callSend(sender_psid, response2);
+  callSend(sender_psid, response3);
   }
   
 const saveRoomBooking = async (arg, sender_psid) =>{
