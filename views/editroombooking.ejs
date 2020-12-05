@@ -32,7 +32,7 @@
   </script>
   
 
-  <form id="form" method="post" enctype="multipart/form-data" action="../updateroombooking">
+  <form id="form" method="post" action="../updateroombooking">
   <div class="form-group">
     <label for="name">Name</label>
     <input type="text" class="form-control" name="name" value="<%= data.name %>">    
@@ -47,7 +47,7 @@
     <input type="email" class="form-control" name="email" value="<%= data.email %>">
   </div> 
   <div class="form-group">
-    <label for="name">Appointment</label>
+    <label for="name">Booking</label>
     <input type="text" class="form-control" name="appointment" value="<%= data.appointment %>">    
   </div>
    <div class="form-group">
@@ -81,12 +81,12 @@
     <label for="name">Status:</label>
     <select name="status" id="status">
       <option value="pending"
-      <%if(data.status =="pending"){%>
+      <%if(data.status == "pending"){%>
          <%="selected"%>
       <%}%>
       >Pending</option>
       <option value="confirm"
-      <%if(data.status =="confirm"){%>
+      <%if(data.status == "confirm"){%>
           <%="selected"%>
       <%}%>
       >Confirm</option>
