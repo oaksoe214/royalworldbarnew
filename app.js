@@ -602,6 +602,15 @@ const handleMessage = (sender_psid, received_message) => {
       case "booking":
           booking(sender_psid);
         break;
+      case "order":
+          booking(sender_psid);
+        break;
+      case "appointment":
+          booking(sender_psid);
+        break;
+      case "food":
+          booking(sender_psid);
+        break;
       case "text":
         textReply(sender_psid);
         break;
@@ -788,8 +797,8 @@ const booking =(sender_psid) => {
               "payload":"roombooking:Room",              
             },{
               "content_type":"text",
-              "title":"Food",
-              "payload":"foodorder:Food",             
+              "title":"People",
+              "payload":"roombooking:Room",             
             }
     ]
   };
