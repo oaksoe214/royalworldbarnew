@@ -29,7 +29,7 @@ const bot_questions ={
 "q3": "Please enter full name",
 "q4": "Please enter phone",
 "q5": "Please enter email",
-"q6": "Please leave a message"
+"q6": "You can write some comment"
 }
 
 let current_question = '';
@@ -985,6 +985,10 @@ const confirmAppointment = (sender_psid) => {
               "content_type":"text",
               "title":"Confirm",
               "payload":"confirm-orderfood",              
+            },{
+              "content_type":"text",
+              "title":"Cancel",
+              "payload":"off",             
             }
     ]
   };
@@ -999,13 +1003,14 @@ const saveRoomBooking = async (arg, sender_psid) =>{
   data.status = "pending";
   db.collection('roombookings').add(data).then((success)=>{
       console.log("SAVED", success);
+      booking2(sender_psid);
       let text = "Thank you. We have received your room booking."+ "\u000A";
       text += "We will call you very soon to confirm"+ "\u000A";
       text +="Your Booking reference number is:" + data.ref;
       let response = {"text": text};
       callSend(sender_psid, response);
 
-      booking2(sender_psid)
+      
      //  let response2 = {
 	    // "text": "Do you want to make Food order?",
 	    // "quick_replies":[
