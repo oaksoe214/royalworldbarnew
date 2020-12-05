@@ -266,12 +266,11 @@ app.post('/admin/updatefoodordering', function(req,res){
     food:req.body.food,
     name:req.body.name,
     email:req.body.email,
-  ref:req.body.ref,
+    ref:req.body.ref,
     date:req.body.date,
     message:req.body.message,
     status:req.body.status,
     phone:req.body.phone,    
-    // visit:req.body.visit,
     foodorder:req.body.foodorder,
     doc_id:req.body.doc_id,
     comment:req.body.comment   
