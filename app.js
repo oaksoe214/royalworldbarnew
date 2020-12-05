@@ -411,12 +411,18 @@ function handleQuickReply(sender_psid, received_message) {
     userInputs[user_id].visit=visit;
     current_question='q1';
     botQuestions(current_question, sender_psid);
-  }else if(received_message.startsWith("roomfood:")){
-    let r_f=received_message.slice(9);
+  }else if(received_message.startsWith("roombooking:")){
+    let r_f=received_message.slice(12);
     userInputs[user_id].appointment=r_f;
     showRoom(sender_psid);
 
-  }else{
+  }else if(received_message.startsWith("foodorder:")){
+    let r_f=received_message.slice(10);
+    userInputs[user_id].appointment=r_f;
+    showFood(sender_psid);
+
+  }
+  else{
     switch(received_message) {     
         case "on":
             showQuickReplyOn(sender_psid);
@@ -670,11 +676,11 @@ const appointment =(sender_psid) => {
             {
               "content_type":"text",
               "title":"Room",
-              "payload":"roomfood:Room",              
+              "payload":"roombooking:Room",              
             },{
               "content_type":"text",
               "title":"Food",
-              "payload":"roomfood:Food",             
+              "payload":"foodorder:Food",             
             }
     ]
   };
@@ -723,6 +729,57 @@ const showRoom =(sender_psid) => {
                   "type": "postback",
                   "title": "Family Room",
                   "payload": "Room:Family Room",
+                }
+              ],
+          }
+
+          ]
+        }
+      }
+    }
+  callSend(sender_psid, response);
+
+}
+
+const showFood =(sender_psid) => {
+  let response = {
+      "attachment": {
+        "type": "template",
+        "payload": {
+          "template_type": "generic",
+          "elements": [{
+            "title": "Snacks",
+            "subtitle": "Beer in a glass and snack",
+            "image_url":"https://previews.123rf.com/images/vitalypestov/vitalypestov1701/vitalypestov170100260/70455194-beer-in-a-glass-on-wooden-background-and-snack-.jpg",                       
+            "buttons": [
+                {
+                  "type": "postback",
+                  "title": "Beer in a glass and snack",
+                  "payload": "Food:Beer in a glass and snack",
+                }
+              ],
+          },
+          {
+            "title": "Huge Set of Snacks",
+            "subtitle": "A Huge Set Of Snacks For Beer",
+            "image_url":"https://thumbs.dreamstime.com/z/huge-set-snacks-beer-huge-set-snacks-beer-145769662.jpg",                       
+            "buttons": [
+                {
+                  "type": "postback",
+                  "title": "A Huge Set Of Snacks",
+                  "payload": "Food:A Huge Set Of Snacks",
+                }
+              ],
+          },
+          {
+            "title": "Chicken Wings",
+            "subtitle": "Air Fryer Chicken Wings",
+            "image_url":"https://airfryerworld.com/images/Air-Fryer-Chicken-Wings-AirFryerWorld-2-500x500.jpg",                       
+            "buttons": [
+                {
+                  "type": "postback",
+                  "title": "Air Fryer Chicken Wings",
+                  "payload": "Food:Air Fryer Chicken Wings",
                 }
               ],
           }
