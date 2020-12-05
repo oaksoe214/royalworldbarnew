@@ -281,20 +281,20 @@
 
   <form id="form" method="post" action="../updateroombooking">
   <div class="form-group">
-    <label for="name">Name</label>
-    <input type="text" class="form-control" name="name" class="textbox" value="<%= data.name %>">    
+    <label for="name">Name:</label>
+    <input type="text" name="name" class="textbox" value="<%= data.name %>">    
   </div>
    <div class="form-group">
-    <label for="name">Phone</label>
-    <input type="text" class="form-control" name="phone" value="<%= data.phone %>">    
+    <label for="name">Phone:</label>
+    <input type="text" class="textbox" name="phone" value="<%= data.phone %>">    
   </div>
 
   <div class="form-group">
-    <label for="email">Email</label>
+    <label for="email">Email:</label>
     <input type="email" class="form-control" name="email" value="<%= data.email %>">
   </div> 
   <div class="form-group">
-    <label for="name">Booking</label>
+    <label for="name">Booking:</label>
     <input type="text" class="form-control" name="appointment" value="<%= data.appointment %>">    
   </div>
    <div class="form-group">
@@ -313,20 +313,20 @@
       <label for="name">Follow up</label><br>
   </div>
   <div class="form-group">
-    <label for="name">Room</label>
+    <label for="name">Room Type:</label>
     <input type="text" class="form-control" name="room" value="<%= data.room %>">    
   </div>
   <div class="form-group">
-    <label for="name">Date</label>
+    <label for="name">Date:</label>
     <input type="text" class="form-control" name="date" value="<%= data.date %>">    
   </div>
 
    <div class="form-group">
-    <label for="name">Time</label>
+    <label for="name">Time:</label>
     <input type="text" class="form-control" name="time" value="<%= data.time %>">    
   </div>
   <div class="form-group">
-    <label for="name">Message</label>
+    <label for="name">Message:</label>
     <textarea class="form-control" name="message" rows="4" cols="50"><%= data.message %></textarea>   
   </div>
   <div class="form-group">
@@ -345,8 +345,8 @@
     </select>    
   </div>
   <div class="form-group">
-    <label for="name">Comment</label>
-    <textarea class="form-control" name="comment" rows="4" cols="50"></textarea>   
+    <label for="name">Comment:</label>
+    <textarea class="form-control" name="comment" placeholder="Enter Comment" rows="4" cols="50"></textarea>   
   </div>
 
   <input type="hidden"  name="doc_id" value="<%= data.doc_id %>">
