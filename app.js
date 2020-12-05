@@ -831,9 +831,9 @@ const booking2 =(sender_psid) => {
 }
 
 const donebooking =(sender_psid) => {
-  let response1 = {"text": "Welcome to Royal World Bar"};
+  let response1 = {"text": "Your Room and Food Order is Completely Done."};
   let response2 = {
-    "text": "Room Booking or Place Booking",
+    "text": "Do you want another room or food",
     "quick_replies":[
             {
               "content_type":"text",
@@ -841,8 +841,8 @@ const donebooking =(sender_psid) => {
               "payload":"roombooking:Room",              
             },{
               "content_type":"text",
-              "title":"Place",
-              "payload":"roombooking:Room",             
+              "title":"Food",
+              "payload":"foodorder:Food",             
             }
     ]
   };
@@ -1140,10 +1140,10 @@ const saveRoomBooking = async (arg, sender_psid) =>{
   data.status = "pending";
   db.collection('foodorderings').add(data).then((success)=>{
       console.log("SAVED", success);
-      donebooking(sender_psid);
       let text = "Thank you. We have received your food order."+ "\u000A";
       text += "We will call you very soon to confirm"+ "\u000A";
       text +="Your Food Order reference number is:" + data.ref;
+      donebooking(sender_psid);
       let response = {"text": text};
       callSend(sender_psid, response);
     }).catch((err)=>{
