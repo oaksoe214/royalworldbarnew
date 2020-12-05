@@ -280,23 +280,37 @@
   <div id="page">
 
   <form id="form" method="post" action="../updateroombooking">
-  <div class="form-group">
-    <label for="name">Name:</label>
-    <input type="text" name="name" class="textbox" required="" value="<%= data.name %>">    
-  </div>
-   <div class="form-group">
-    <label for="name">Phone:</label>
-    <input type="text" class="textbox" required="" name="phone" value="<%= data.phone %>">    
-  </div>
+    <table align="center" cellpadding="5" cellspacing="5" width="100%">
+      <tr>
+        <td>Name:</td>
+        <td>
+          <input type="text" name="name" size="30" maxlength="25" class="textbox" required="" value="<%= data.name %>"> 
+        </td>
+      </tr>
 
-  <div class="form-group">
-    <label for="email">Email:</label>
-    <input type="email"  class="textbox" required="" name="email" value="<%= data.email %>">
-  </div> 
-  <div class="form-group">
-    <label for="name">Booking:</label>
-    <input type="text"  class="textbox" required="" name="appointment" value="<%= data.appointment %>">    
-  </div>
+      <tr>
+        <td>Phone:</td>
+        <td>
+          <input type="text" size="30" maxlength="25" class="textbox" required="" name="phone" value="<%= data.phone %>">  
+        </td>
+      </tr>
+
+      <tr>
+        <td>Email:</td>
+        <td>
+          <input type="email" name="email" size="30" maxlength="25" class="textbox" required="" value="<%= data.email %>"> 
+        </td>
+      </tr>
+
+      <tr>
+        <td>Booking:</td>
+        <td>
+          <input type="text" name="appointment" size="30" maxlength="25" class="textbox" required=""  value="<%= data.appointment %>">  
+        </td>
+      </tr>
+    </table>
+
+
    <div class="form-group">
     <label for="name">Visit:</label>
     <input type="radio" name="visit" value="first time" 
