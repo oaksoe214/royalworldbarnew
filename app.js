@@ -178,7 +178,6 @@ app.get('/admin/updateroombooking/:doc_id', async function(req,res){
   if (!doc.exists){
     console.log('No such document!');
   }else{
-    console.log('Document data:', doc.data());
     let data = doc.data();
     data.doc_id = doc_id;
 
@@ -191,19 +190,32 @@ app.post('/admin/updateroombooking', function(req,res){
   console.log('REQ:', req.body);
   
   let data = {
-    message:req.body.message,
-    name:req.body.name,
-    phone:req.body.phone,
-    email:req.body.email,
-    room:req.body.room,
-    time:req.body.time,
-    visit:req.body.visit,
-    ref:req.body.ref,
-    date:req.body.date,
-    status:req.body.status,
-    appointment:req.body.appointment,
-    doc_id:req.body.doc_id    
+    // message:req.body.message,
+    // name:req.body.name,
+    // phone:req.body.phone,
+    // email:req.body.email,
+    // room:req.body.room,
+    // time:req.body.time,
+    // visit:req.body.visit,
+    // ref:req.body.ref,
+    // date:req.body.date,
+    // status:req.body.status,
+    // appointment:req.body.appointment,
+    // doc_id:req.body.doc_id    
     //comment:req.body.comment
+
+	time:req.body.time,
+    room:req.body.room,
+    name:req.body.name,
+    email:req.body.email,
+	ref:req.body.ref,
+    date:req.body.date,
+    message:req.body.message,
+    status:req.body.status,
+    phone:req.body.phone,    
+    visit:req.body.visit,
+    appointment:req.body.appointment,
+    doc_id:req.body.doc_id   
   }
   
   db.collection('roombookings').doc(req.body.doc_id)
