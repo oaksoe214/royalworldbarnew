@@ -146,8 +146,10 @@ app.post('/test',function(req,res){
 });
 
 app.get('/admin/roombookings', async function(req,res){
+  
   const roombookingsRef = db.collection('roombookings');
   const snapshot = await roombookingsRef.get();
+  
   if(snapshot.empty){
     res.send('no data');
   }
@@ -185,23 +187,23 @@ app.get('/admin/updateroombooking/:doc_id', async function(req,res){
   }
 });
 
-app.post('/admin/updateroombooking', function(req,res){
+app.post('/admin/updateroombooking', async function(req,res){
   console.log('REQ:', req.body);
   
   let data = {
+    message:req.body.message,
     name:req.body.name,
     phone:req.body.phone,
     email:req.body.email,
     room:req.body.room,
-    appointment:req.body.appointment,
-    visit:req.body.visit,
-    date:req.body.date,
     time:req.body.time,
-    message:req.body.message,
-    status:req.body.status,
-    doc_id:req.body.doc_id,
+    visit:req.body.visit,
     ref:req.body.ref,
-    comment:req.body.comment
+    date:req.body.date,
+    status:req.body.status,
+    appointment:req.body.appointment,
+    doc_id:req.body.doc_id    
+    //comment:req.body.comment
   }
   
   db.collection('roombookings').doc(req.body.doc_id)
