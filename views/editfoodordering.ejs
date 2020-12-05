@@ -1,0 +1,432 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Royal World Bar</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type="text/css">
+    *
+    {
+    border: 0;
+    margin: 0;
+    }
+    body{
+      /*background-image:url(images/body_bg.png);*/
+      background:#FFF;
+      line-height: 18px;
+    }
+    #bg_clouds 
+    { 
+      background:#FFF;
+    }
+    #logo
+    { 
+        padding: 20px 0px 0px 18px;
+        height: 30px;
+    }
+    #logo h2
+    {
+        font-family:"Times New Roman", Times, serif;
+           color: #FFFFFF;
+           font-size: 30px;
+           text-shadow: #333 2px 2px 4px;
+    } 
+    #main {
+      width: 1000px;
+      margin: 0px auto;
+      background:url(../images/main.jpg) right top no-repeat;}
+    #header
+     { 
+      width:1000px;
+      height: 100px;
+      padding-top: 30px;
+    }
+    #buttons{
+      text-align:center;
+      height: 56px;
+      padding-left: 0px;
+      background:#666;
+      padding: 0px 0px 0px 100px;
+    }
+    #buttons a {
+      font-family: "Lucida Grande","Lucida Sans Unicode",Helvetica,Arial,Verdana,sans-serif;
+      font-size: 18px;
+      font-weight: 100;
+      display: block;
+      float: left;
+      text-decoration: none;
+      color:#FFF;
+      text-align: center;
+      padding-top: 22px;
+      height: 34px;
+      text-shadow: #666 1px 1px 1px;
+    }
+    .but 
+    {
+      width: 160px;
+    }
+    #buttons .but:hover 
+    {
+      background: url(../images/hover.png) top repeat-x;
+      color:#FFF;
+      text-shadow: #333 1px 1px 1px;
+    }
+    #page
+    {
+      width:950px;
+      background:#FFF;
+      margin:0 auto;
+      padding:20px;
+      border:#00F;
+      -moz-border-radius:10px;
+      color:#000;
+      box-shadow:0 0 10px #000;
+    }
+    #page h3
+    {
+      font-family:Cambria;
+      word-spacing:0.1em;
+      color:#0088CC;
+      font-size:16px;
+      text-shadow: #999 0.5px 0.5px 1px;
+    }
+    #page h1
+    {
+      font-family:"Times New Roman", Times, serif;
+      text-align:center;
+      word-spacing:0.1em;
+      color:#666;
+      font-size:13px;
+      padding-top:10px;
+      text-shadow: #999 0.5px 0.5px 1px;
+    }
+
+    .clock 
+    { 
+      font: 15px "Lucida Grande","Lucida Sans Unicode",Helvetica,Arial,Verdana,sans-serif;
+      color:#FFF; 
+      font-size:12px;
+      background:url(../images/hover.png) no-repeat;
+      height:25px;
+      width:160px;
+      padding-top:5px;
+      text-shadow: #999 0.5px 0.5px 1px;
+      text-align:center;
+    }
+    #page table
+    {
+      /*background:url(images/backgroundtexture.png);*/
+    }
+    #page td
+    {
+      border-top:1.5px solid #CCC;
+      padding:10px;
+    }
+    .textbox 
+    {
+      font-family:Cambria;
+      font-weight:bold;
+      font-size:14px;
+      text-align:center;
+      border:none;
+      background:url(../images/bg.jpg);
+      width:250px;
+      height:30px;
+      border-radius:10px;
+      color:#333;
+      box-shadow:1px 1px 2px #333;
+    }
+    .textbox1 
+    {
+      font-family:Cambria;
+      font-weight:bold;
+      text-align:center;
+      border:none;
+      background:url(../images/bg.jpg);
+      width:250px;
+      height:30px;
+      border-radius:10px;
+      color:#900;
+      box-shadow:1px 1px 2px #333;
+    }
+    .btn 
+    {
+      font-weight:bold;
+      border:none;
+      background:#ff4b41;
+      width:80px;
+      height:30px;
+      border-radius:10px;
+      color:#333;
+      box-shadow:1px 1px 2px #333;
+    }
+    .btn:hover
+    {
+      font-weight:bold;
+      border:none;
+      background:#333;
+      width:80px;
+      height:30px;
+      border-radius:10px;
+      color:#FFF;
+      box-shadow:1px 1px 2px #333;
+    }
+    .link
+    {
+      font-family:Arial, Helvetica, sans-serif;
+      font-size:12px;
+      color:#333;
+    }
+    #footer
+    {
+      width:100%;
+      height:20px;
+      text-align:center;
+      color:;
+      margin: 0 auto;
+      border:thin;
+      -moz-border-radius:10px;
+      box-shadow:0 0 5px #999;
+      color: #737980;
+      /*background:#FFF;*/
+      background-image: linear-gradient(#FFF, #EDEDED 100px);
+    }
+    .trow
+    {
+      background:#ABD7E4;
+      color:#036;
+      text-align:center;
+      font-family:"Times New Roman", Times, serif;
+    }
+    .trow1
+    {
+      background:url(../images/backgroundtexture_blue.png);
+      color:#000;
+      text-align:center;
+      font-family:"Times New Roman", Times, serif;
+      text-shadow: #333 1px 1px 1px;
+    }
+    .trow1:hover
+    {
+      background:#6A7BCA;
+      color:#FFF;
+      text-align:center;
+      font-family:"Times New Roman", Times, serif;
+      text-shadow: #333 1px 1px 1px;
+    }
+    .amount
+    {
+      color:#FFF;
+      background:#333;
+      font-weight:bold;
+      border:thin;
+    }
+    .amount:hover
+    {
+      color:#000;
+      background:#ff5046;
+      font-weight:bold;
+      text-shadow: #333 1px 1px 1px;
+    }
+
+  </style>
+ </head>
+
+  <body>
+    <div id="bg_clouds">
+    <div id="main">
+        
+        <div id="logo">
+          <h2>Royal World Bar Food Ordering Edit</h2>
+      </div>
+        <br />
+        
+        <div id="header"> 
+            <div id="buttons">
+              <a href="#" class="but"  title="">Home</a>
+              <a href="#"  class="but" title="">Register</a>
+              <a href="https://royalworldbarnew.herokuapp.com/admin/foodorderings"  class="but" title="">Food Ordering</a>
+              <a href="https://royalworldbarnew.herokuapp.com/admin/foodorderings"  class="but" title="">Food Ordering</a>
+            </div>
+        </div>
+    
+    </div>
+</div>
+
+  <script>
+      (function(d, s, id){
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {return;}
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/messenger.Extensions.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'Messenger'));
+
+    const APP_ID = 544769076153407;    
+    var senderID = "";
+    
+    window.extAsyncInit = function() {
+        MessengerExtensions.getContext(APP_ID, 
+          function success(thread_context){
+           senderID = thread_context.psid;
+          },
+          function error(err){
+            console.log(err);
+          }
+        );        
+    };
+  </script>
+
+  <div id="page">
+
+  <form id="form" method="post" action="../updatefoodordering">
+    <table align="center" cellpadding="5" cellspacing="5" width="100%">
+      <tr>
+        <td>Name:</td>
+        <td>
+          <input type="text" name="name" size="30" maxlength="25" class="textbox" required="" value="<%= data.name %>"> 
+        </td>
+      </tr>
+
+      <tr>
+        <td>Phone:</td>
+        <td>
+          <input type="text" size="30" maxlength="25" class="textbox" required="" name="phone" value="<%= data.phone %>">  
+        </td>
+      </tr>
+
+      <tr>
+        <td>Email:</td>
+        <td>
+          <input type="email" size="30" maxlength="25" name="email" size="30" maxlength="25" class="textbox" required="" value="<%= data.email %>"> 
+        </td>
+      </tr>
+
+      <tr>
+        <td>Ordering:</td>
+        <td>
+            <input type="text"  class="textbox" required="" name="appointment" value="<%= data.appointment %>"> 
+        </td>
+      </tr>
+
+      <!--  <tr>
+        <td>Visit:</td>
+        <td>
+          <input type="radio" name="visit" value="first time" 
+            <%if(data.visit =="first time"){%>
+              <%="checked"%>
+            <%}%> 
+            >  
+          <label for="name">First Time</label>
+
+          <input type="radio" name="visit" value="follow up"  
+          <%if(data.visit =="follow up"){%>
+          <%="checked"%>
+          <%}%> 
+          >
+          <label for="name">Follow up</label>
+        </td>
+      </tr> -->
+
+      <tr>
+        <td>Room Type:</td>
+        <td>
+          <input type="text" name="room" size="30" maxlength="25" class="textbox" required=""  value="<%= data.room %>">  
+        </td>
+      </tr>
+
+      <tr>
+        <td>Date:</td>
+        <td>
+          <input type="text" name="date" size="30" maxlength="25" class="textbox" required=""  value="<%= data.date %>">  
+        </td>
+      </tr>
+
+      <tr>
+        <td>Time:</td>
+        <td>
+          <input type="text" name="time" size="30" maxlength="25" class="textbox" required=""  value="<%= data.time %>">  
+        </td>
+      </tr>
+
+      <tr>
+        <td>Message:</td>
+        <td>
+          <textarea class="textbox" size="30" maxlength="25" required="" name="message" rows="4" cols="50"><%= data.message %></textarea>
+        </td>
+      </tr>
+
+      <tr>
+        <td>Status:</td>
+        <td>
+          <select name="status" id="status" class="textbox">
+            <option value="pending"
+            <%if(data.status == "pending"){%>
+               <%="selected"%>
+            <%}%>
+            >Pending</option>
+            <option value="confirm"
+            <%if(data.status == "confirm"){%>
+                <%="selected"%>
+            <%}%>
+            >Confirm</option>
+          </select> 
+        </td>
+      </tr>
+
+       <tr>
+        <td>Comment:</td>
+        <td>
+          <textarea class="textbox" size="30" maxlength="25" required="" name="comment" rows="4" cols="50"><%= data.comment %></textarea>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+        <input type="submit" value="Submit" class="btn" name="btnsubmit"/>
+        </td>
+    </tr>
+    </table>
+    <input type="hidden"  name="doc_id" value="<%= data.doc_id %>">
+    <input type="hidden"  name="ref" value="<%= data.ref %>">
+    <!-- <input type="submit" value="Submit" class="btn">  -->
+  </form>
+  </div>
+
+<br />
+
+<div id="footer">
+&copy; 2020-2021 royalworldbar.com All Right Reserved
+</div>
+
+
+  
+  <script>
+      
+   
+      const windowShut = () => {
+   
+          MessengerExtensions.requestCloseBrowser(function success() {
+          console.log("success");          
+        }, function error(err) {
+          console.log(err);
+        });
+        }
+      
+      document.getElementById("form").addEventListener("submit", windowShut);       
+
+      /*
+      const postFormData = (data) => {
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "https://fbstarterbot.herokuapp.com/webview/", true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.send(JSON.stringify(data)); 
+      } */
+
+     
+
+  </script>
+
+  </body>
+
+</html>
