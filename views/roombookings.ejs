@@ -260,10 +260,10 @@
 
 	<table cellspacing="1" cellpadding="5" border="1">
 		<tr>
-			<th>DocumentID</th>
-			<th>Name</th>
-			<!-- <th>Phone</th>
+			<!-- <th>DocumentID</th>
+			<th>Phone</th>
 			<th>Email</th> -->
+			<th>Name</th>
 			<th>Booking Type</th>
 			<th>Room</th>
 			<th>Date</th>
@@ -272,15 +272,16 @@
 			<th>Message</th>
 			<th>Reference</th>
 			<th>Status</th>
+			<th>Comment</th>
 			<th>Action</th>
 		</tr>
 
 	<% data.forEach(function(roombooking){ %>
 		<tr>
-			<td><%= roombooking.doc_id %></td>
-			<td><%= roombooking.name %></td>
-			<!-- <td><%= roombooking.phone %></td>
+			<!-- <td><%= roombooking.doc_id %></td>
+			<td><%= roombooking.phone %></td>
 			<td><%= roombooking.email %></td> -->
+			<td><%= roombooking.name %></td>
 			<td><%= roombooking.appointment %></td>
 			<td><%= roombooking.room %></td>
 			<td><%= roombooking.date %></td>
@@ -289,6 +290,7 @@
 			<td><%= roombooking.message %></td>
 			<td><%= roombooking.ref %></td>
 			<td><%= roombooking.status %></td>
+			<td><%= roombooking.comment %></td>
 			<td><a href="updateroombooking/<%= roombooking.doc_id %>">Edit</a>  | <a href="">Delete</a> </td>
 		</tr>
 	<% }); %>
