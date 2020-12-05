@@ -990,10 +990,9 @@ const confirmAppointment = (sender_psid) => {
             }
     ]
   };
-  callSend(sender_psid, response2).then(() => {
-    return callSend(sender_psid, response2);
-  });
-
+  // callSend(sender_psid, response2).then(() => {
+  //   return callSend(sender_psid, response2);
+  callSend(sender_psid, response2);
   }
   
 const saveRoomBooking = async (arg, sender_psid) =>{
