@@ -187,7 +187,7 @@ app.get('/admin/updateroombooking/:doc_id', async function(req,res){
   }
 });
 
-app.post('/admin/updateroombooking', async function(req,res){
+app.post('/admin/updateroombooking', function(req,res){
   console.log('REQ:', req.body);
   
   let data = {
