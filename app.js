@@ -263,7 +263,7 @@ app.post('/admin/updatefoodordering', function(req,res){
   
   let data = {
   time:req.body.time,
-    food:req.body.food,
+    //food:req.body.food,
     name:req.body.name,
     email:req.body.email,
     ref:req.body.ref,
