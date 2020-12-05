@@ -968,7 +968,7 @@ const confirmAppointment = (sender_psid) => {
 
  const confirmFoodOrder = (sender_psid) => {
   console.log('FOOD ORDER INFO',userInputs);
-   let 
+   let Summary += "message:" + userInputs[user_id].message + "\u000A"; 
    //Summary = "foodorder:" + userInputs[user_id].foodorder + "\u000A";
    // Summary += "food:" + userInputs[user_id].food + "\u000A";
    // Summary += "date:" + userInputs[user_id].date + "\u000A";
@@ -976,7 +976,7 @@ const confirmAppointment = (sender_psid) => {
    // Summary += "name:" + userInputs[user_id].name + "\u000A";
    // Summary += "phone:" + userInputs[user_id].phone + "\u000A";
    // Summary += "email:" + userInputs[user_id].email + "\u000A";
-   Summary += "message:" + userInputs[user_id].message + "\u000A";
+   // Summary += "message:" + userInputs[user_id].message + "\u000A";
    
   let response1 = {"text": Summary};
 
