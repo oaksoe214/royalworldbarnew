@@ -789,7 +789,7 @@ start room
 const booking =(sender_psid) => {
   let response1 = {"text": "Welcome to Royal World Bar"};
   let response2 = {
-    "text": "Please Select Room or Food",
+    "text": "Room Booking or Place Booking",
     "quick_replies":[
             {
               "content_type":"text",
@@ -797,7 +797,7 @@ const booking =(sender_psid) => {
               "payload":"roombooking:Room",              
             },{
               "content_type":"text",
-              "title":"People",
+              "title":"Place",
               "payload":"roombooking:Room",             
             }
     ]
@@ -821,6 +821,28 @@ const booking2 =(sender_psid) => {
               "content_type":"text",
               "title":"Cancel",
               "payload":"cancel",             
+            }
+    ]
+  };
+  callSend(sender_psid, response1).then(()=>{
+    return callSend(sender_psid, response2);
+  });
+
+}
+
+const donebooking =(sender_psid) => {
+  let response1 = {"text": "Welcome to Royal World Bar"};
+  let response2 = {
+    "text": "Room Booking or Place Booking",
+    "quick_replies":[
+            {
+              "content_type":"text",
+              "title":"Room",
+              "payload":"roombooking:Room",              
+            },{
+              "content_type":"text",
+              "title":"Place",
+              "payload":"roombooking:Room",             
             }
     ]
   };
@@ -1113,11 +1135,12 @@ const saveRoomBooking = async (arg, sender_psid) =>{
   }
 
   const saveFoodOrdering = async (arg, sender_psid) =>{
-  let data=arg;
-  data.ref= generateRandom(6);
+  let data=data.ref;
+  //data.ref= generateRandom(6);
   data.status = "pending";
   db.collection('foodorderings').add(data).then((success)=>{
       console.log("SAVED", success);
+      donebooking(sender_psid);
       let text = "Thank you. We have received your food order."+ "\u000A";
       text += "We will call you very soon to confirm"+ "\u000A";
       text +="Your Food Order reference number is:" + data.ref;
