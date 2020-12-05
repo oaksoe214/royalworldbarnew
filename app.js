@@ -851,7 +851,7 @@ const showFood =(sender_psid) => {
 
 }
 
-const firstOrFollowup =(sender_psid) => {  
+const c =(sender_psid) => {  
   let response = {
     "text": "First Time Visit or Follow Up?",
     "quick_replies":[
@@ -1005,11 +1005,12 @@ const saveRoomBooking = async (arg, sender_psid) =>{
       text +="Your Booking reference number is:" + data.ref;
       let response = {"text": text};
       callSend(sender_psid, response);
+      booking2(sender_psid);
     }).catch((err)=>{
         console.log('Error', err);
     });
 
-	booking2(sender_psid);
+	
   }
 
   const saveFoodOrdering = async (arg, sender_psid) =>{
