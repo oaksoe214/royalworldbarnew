@@ -305,67 +305,91 @@
       <tr>
         <td>Booking:</td>
         <td>
-          <input type="text" name="appointment" size="30" maxlength="25" class="textbox" required=""  value="<%= data.appointment %>">  
+          <input type="radio" name="visit" value="first time" 
+            <%if(data.visit =="first time"){%>
+              <%="checked"%>
+            <%}%> 
+            >  
         </td>
       </tr>
+
+       <tr>
+        <td>Visit:</td>
+        <td>
+          <input type="email" name="email" size="30" maxlength="25" class="textbox" required="" value="<%= data.email %>"> 
+          <label for="name">First Time</label>
+
+          <input type="radio" name="visit" value="follow up"  
+          <%if(data.visit =="follow up"){%>
+          <%="checked"%>
+          <%}%> 
+          >
+          <label for="name">Follow up</label>
+        </td>
+      </tr>
+
+      <tr>
+        <td>Room Type:</td>
+        <td>
+          <input type="text" name="room" size="30" maxlength="25" class="textbox" required=""  value="<%= data.room %>">  
+        </td>
+      </tr>
+
+      <tr>
+        <td>Date:</td>
+        <td>
+          <input type="text" name="date" size="30" maxlength="25" class="textbox" required=""  value="<%= data.date %>">  
+        </td>
+      </tr>
+
+      <tr>
+        <td>Time:</td>
+        <td>
+          <input type="text" name="time" size="30" maxlength="25" class="textbox" required=""  value="<%= data.time %>">  
+        </td>
+      </tr>
+
+      <tr>
+        <td>Message:</td>
+        <td>
+          <textarea class="textbox" size="30" maxlength="25" required="" name="message" rows="4" cols="50"><%= data.message %></textarea>
+        </td>
+      </tr>
+
+      <tr>
+        <td>Status:</td>
+        <td>
+          <select name="status" id="status" class="textbox">
+            <option value="pending"
+            <%if(data.status == "pending"){%>
+               <%="selected"%>
+            <%}%>
+            >Pending</option>
+            <option value="confirm"
+            <%if(data.status == "confirm"){%>
+                <%="selected"%>
+            <%}%>
+            >Confirm</option>
+          </select> 
+        </td>
+      </tr>
+
+       <tr>
+        <td>Comment:</td>
+        <td>
+          <textarea class="textbox" size="30" maxlength="25" required="" name="comment" rows="4" cols="50"><%= data.comment %></textarea>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+        <input type="submit" value="Submit" class="btn" name="btnsubmit"/>
+        </td>
+    </tr>
     </table>
-
-
-   <div class="form-group">
-    <label for="name">Visit:</label>
-    <input type="radio" name="visit" value="first time" 
-    <%if(data.visit =="first time"){%>
-      <%="checked"%>
-    <%}%> 
-    >
-      <label for="name">First Time</label>
-      <input type="radio" name="visit" value="follow up"  
-      <%if(data.visit =="follow up"){%>
-      <%="checked"%>
-      <%}%> 
-      >
-      <label for="name">Follow up</label><br>
-  </div>
-  <div class="form-group">
-    <label for="name">Room Type:</label>
-    <input type="text" class="textbox" required="" name="room" value="<%= data.room %>">    
-  </div>
-  <div class="form-group">
-    <label for="name">Date:</label>
-    <input type="text" class="textbox" required="" name="date" value="<%= data.date %>">    
-  </div>
-
-   <div class="form-group">
-    <label for="name">Time:</label>
-    <input type="text" class="textbox" required="" name="time" value="<%= data.time %>">    
-  </div>
-  <div class="form-group">
-    <label for="name">Message:</label>
-    <textarea class="textbox" required="" name="message" rows="4" cols="50"><%= data.message %></textarea>   
-  </div>
-  <div class="form-group">
-    <label for="name">Status:</label>
-    <select name="status" id="status">
-      <option value="pending"
-      <%if(data.status == "pending"){%>
-         <%="selected"%>
-      <%}%>
-      >Pending</option>
-      <option value="confirm"
-      <%if(data.status == "confirm"){%>
-          <%="selected"%>
-      <%}%>
-      >Confirm</option>
-    </select>    
-  </div>
-  <div class="form-group">
-    <label for="name">Comment:</label>
-    <textarea class="textbox" required="" name="comment" placeholder="Enter Comment" rows="4" cols="50"></textarea>   
-  </div>
-
-  <input type="hidden"  name="doc_id" value="<%= data.doc_id %>">
-  <input type="hidden"  name="ref" value="<%= data.ref %>">
-  <input type="submit" value="Submit" class="btn"> 
+    <input type="hidden"  name="doc_id" value="<%= data.doc_id %>">
+    <input type="hidden"  name="ref" value="<%= data.ref %>">
+    <input type="submit" value="Submit" class="btn"> 
   </form>
   </div>
 
