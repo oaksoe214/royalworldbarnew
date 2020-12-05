@@ -215,7 +215,8 @@ app.post('/admin/updateroombooking', function(req,res){
     phone:req.body.phone,    
     visit:req.body.visit,
     appointment:req.body.appointment,
-    doc_id:req.body.doc_id   
+    doc_id:req.body.doc_id,
+    comment:req.body.comment   
   }
   
   db.collection('roombookings').doc(req.body.doc_id)
