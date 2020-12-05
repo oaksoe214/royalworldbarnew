@@ -190,20 +190,6 @@ app.post('/admin/updateroombooking', function(req,res){
   console.log('REQ:', req.body);
   
   let data = {
-    // message:req.body.message,
-    // name:req.body.name,
-    // phone:req.body.phone,
-    // email:req.body.email,
-    // room:req.body.room,
-    // time:req.body.time,
-    // visit:req.body.visit,
-    // ref:req.body.ref,
-    // date:req.body.date,
-    // status:req.body.status,
-    // appointment:req.body.appointment,
-    // doc_id:req.body.doc_id    
-    //comment:req.body.comment
-
 	time:req.body.time,
     room:req.body.room,
     name:req.body.name,
@@ -213,7 +199,7 @@ app.post('/admin/updateroombooking', function(req,res){
     message:req.body.message,
     status:req.body.status,
     phone:req.body.phone,    
-    visit:req.body.visit,
+    // visit:req.body.visit,
     appointment:req.body.appointment,
     doc_id:req.body.doc_id,
     comment:req.body.comment   
@@ -406,16 +392,16 @@ function handleQuickReply(sender_psid, received_message) {
 
   received_message=received_message.toLowerCase();
 
-  if(received_message.startsWith("visit:")){
-    let visit=received_message.slice(6);
-    userInputs[user_id].visit=visit;
-    current_question='q1';
-    botQuestions(current_question, sender_psid);
-  }else if(received_message.startsWith("roombooking:")){
+  // if(received_message.startsWith("visit:")){
+  //   let visit=received_message.slice(6);
+  //   userInputs[user_id].visit=visit;
+  //   current_question='q1';
+  //   botQuestions(current_question, sender_psid);
+  // }else 
+  if(received_message.startsWith("roombooking:")){
     let r_f=received_message.slice(12);
     userInputs[user_id].appointment=r_f;
     showRoom(sender_psid);
-
   }else if(received_message.startsWith("foodorder:")){
     let r_f=received_message.slice(10);
     userInputs[user_id].appointment=r_f;
@@ -575,13 +561,16 @@ const handlePostback = (sender_psid, received_postback) => {
     console.log("SELECTED ROOM IS: ", room_type);
     userInputs[user_id].room=room_type;
     console.log('TEST',userInputs);
-    firstOrFollowup(sender_psid);
+    current_question='q1';
+    botQuestions(current_question, sender_psid);
   }else if(payload.startsWith("Food:")){
     let food_type=payload.slice(5);
     console.log("SELECTED FOOD IS: ", food_type);
     userInputs[user_id].food=food_type;
     console.log('TEST',userInputs);
-    firstOrFollowup(sender_psid);
+    // firstOrFollowup(sender_psid);
+    current_question='q1';
+    botQuestions(current_question, sender_psid);
   }
   else{
       switch(payload) {        
@@ -843,7 +832,7 @@ const confirmAppointment = (sender_psid) => {
   console.log('BOOKING INFO',userInputs);
    let Summary = "appointment:" + userInputs[user_id].appointment + "\u000A";
    Summary += "room:" + userInputs[user_id].room + "\u000A";
-   Summary += "visit:" + userInputs[user_id].visit + "\u000A";
+   // Summary += "visit:" + userInputs[user_id].visit + "\u000A";
    Summary += "date:" + userInputs[user_id].date + "\u000A";
    Summary += "time:" + userInputs[user_id].time + "\u000A";
    Summary += "name:" + userInputs[user_id].name + "\u000A";
