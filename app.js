@@ -146,6 +146,8 @@ app.post('/test',function(req,res){
     callSend(sender_psid, response);
 });
 
+
+/////////////ROOM BOOKINGS/////////////////////////
 app.get('/admin/roombookings', async function(req,res){
   
   const roombookingsRef = db.collection('roombookings');
@@ -212,6 +214,76 @@ app.post('/admin/updateroombooking', function(req,res){
   }).catch((err)=>console.log('ERROR:',error));
 
 });
+/////////////ROOM BOOKINGS/////////////////////////
+
+/////////////FOOD ODERINGS/////////////////////////
+app.get('/admin/foodorderings', async function(req,res){
+  
+  const foodorderingsRef = db.collection('foodorderings');
+  const snapshot = await foodorderingsRef.get();
+  
+  if(snapshot.empty){
+    res.send('no data');
+  }
+
+  let data = [];
+
+  snapshot.forEach(doc => {
+    let foodordering ={};
+    foodordering = doc.data();
+    foodordering.doc_id = doc.id;
+
+    data.push(foodordering);
+    
+  });
+
+  console.log('DATA:', data);
+
+  res.render('foodorderings.ejs', {data:data});
+});
+
+app.get('/admin/updatefoodordering/:doc_id', async function(req,res){
+  let doc_id = req.params.doc_id;
+    
+  const foodorderingRef = db.collection('foodorderings').doc(doc_id);
+  const doc = await foodorderingRef.get();
+  if (!doc.exists){
+    console.log('No such document!');
+  }else{
+    let data = doc.data();
+    data.doc_id = doc_id;
+
+    console.log('Document data:', data);
+    res.render('editfoodordering.ejs', {data:data});
+  }
+});
+
+app.post('/admin/updatefoodordering', function(req,res){
+  console.log('REQ:', req.body);
+  
+  let data = {
+  time:req.body.time,
+    food:req.body.food,
+    name:req.body.name,
+    email:req.body.email,
+  ref:req.body.ref,
+    date:req.body.date,
+    message:req.body.message,
+    status:req.body.status,
+    phone:req.body.phone,    
+    // visit:req.body.visit,
+    foodorder:req.body.foodorder,
+    doc_id:req.body.doc_id,
+    comment:req.body.comment   
+  }
+  
+  db.collection('foodorderings').doc(req.body.doc_id)
+  .update(data).then(()=>{
+    res.redirect('/admin/foodorderings');
+  }).catch((err)=>console.log('ERROR:',error));
+
+});
+/////////////FOOD ODERINGS/////////////////////////
 
 /*********************************************
 Gallery page
