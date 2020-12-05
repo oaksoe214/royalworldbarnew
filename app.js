@@ -499,7 +499,7 @@ const handleMessage = (sender_psid, received_message) => {
       case "mingalarbar":
           greetInMyanmar(sender_psid);
         break;
-      case "appointment":
+      case "booking":
           appointment(sender_psid);
         break;
       case "text":
@@ -574,6 +574,12 @@ const handlePostback = (sender_psid, received_postback) => {
     let room_type=payload.slice(5);
     console.log("SELECTED ROOM IS: ", room_type);
     userInputs[user_id].room=room_type;
+    console.log('TEST',userInputs);
+    firstOrFollowup(sender_psid);
+  }else if(payload.startsWith("Food:")){
+    let food_type=payload.slice(5);
+    console.log("SELECTED FOOD IS: ", food_type);
+    userInputs[user_id].food=food_type;
     console.log('TEST',userInputs);
     firstOrFollowup(sender_psid);
   }
